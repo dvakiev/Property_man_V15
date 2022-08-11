@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fims_property_type_form_view" model="ir.ui.view">
+            <field name="name">property.type.form</field>
+            <field name="model">property.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fims_property_type_view">
+            <field name="name">property.type.tree.view</field>
+            <field name="model">property.type</field>
+            <field name="arch" type="xml">
+                <tree string="Property Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_property_type" model="ir.actions.act_window">
+            <field name="name">Property Type</field>
+            <field name="res_model">property.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is not any Property Type created...!
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_property_configuration"
+                  parent="fims_property_management_system.menu_property" name="Configuration"
+                  sequence="10"/>
+
+        <menuitem action="action_property_type" id="menu_property_type"
+                  parent="fims_property_management_system.menu_property_configuration" name="Property Type"
+                  sequence="1"/>
+
+    </data>
+</odoo>

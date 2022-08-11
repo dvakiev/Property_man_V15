@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Assets -->
+        <record id="assets_editor" model="ir.asset">
+            <field name="name">Form Image Preview Assests</field>
+            <field name="bundle">web.assets_frontend</field>
+            <field name="path">/fims_property_management_system/static/src/css/lightbox.css</field>
+            <field name="path">/fims_property_management_system/static/src/js/form_image_preview.js</field>
+        </record>
+    </data>
+</odoo>

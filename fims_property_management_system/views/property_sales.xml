@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="fims_property_sales_form_view" model="ir.ui.view">
+            <field name="name">property.sales.form</field>
+            <field name="model">property.sales</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_in_progress" states="new,closed" string="In Progress" type="object"
+                                class="btn-primary"/>
+                        <button name="action_closed" states="new,in_progress" string="Sold" type="object"
+                                class="btn-primary"/>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="btn btn-primary"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,in_progress,closed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="oe_stat_button" name="view_invoice" icon="fa-pencil-square-o">
+                                <div class="o_form_field o_stat_info" modifiers="{}">
+                                    <span class="o_stat_value" modifiers="{}">
+                                    </span>
+                                    <span class="o_stat_text" modifiers="{}">
+                                        View Invoice
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="property_id" required="1" domain="[('state','in',['new','available'])]"/>
+                                <field name="owner_id" required="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="invoice_id" invisible="1"/>
+                                <field name="property_cost" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="buyer_id" required="1"/>
+                                <field name="date" required="1"/>
+                                <field name="deal_amount" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fims_property_sales_view">
+            <field name="name">property.sales.tree.view</field>
+            <field name="model">property.sales</field>
+            <field name="arch" type="xml">
+                <tree string="Property Sales">
+                    <field name="name"/>
+                    <field name="property_id"/>
+                    <field name="owner_id"/>
+                    <field name="buyer_id"/>
+                    <field name="property_cost"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_property_sales" model="ir.actions.act_window">
+            <field name="name">Property Sales</field>
+            <field name="res_model">property.sales</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is not any Property Sales created...!
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_property_sales" id="menu_property_sales"
+                  parent="fims_property_management_system.menu_property" name="Property Sales"
+                  sequence="3"/>
+    </data>
+</odoo>

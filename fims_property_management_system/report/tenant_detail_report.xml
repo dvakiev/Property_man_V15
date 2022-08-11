@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="fims_tenant_details_report_action"
+                string="Tenant Details"
+                model="tenant.details"
+                name="fims_property_management_system.tenant_details_report"
+                file="fims_property_management_system.tenant_details_report"
+                report_type="qweb-pdf"/>
+
+        <template id="tenant_details_doc">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                <div class="page">
+                    <h3 style="padding-top:40px;">
+                        <t>
+                            <span>Tenant :</span>
+                        </t>
+                        <t>
+                            <span t-field="doc.code"/>
+                        </t>
+                    </h3>
+                    <div class="row mt32 mb32" id="informations">
+                        <div t-if="doc.partner_id.name" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>Tenant:</strong>
+                            <p t-field="doc.partner_id"/>
+                        </div>
+                        <div t-if="doc.start_date" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>Start Date:</strong>
+                            <p t-field="doc.start_date"/>
+                        </div>
+                        <div t-if="doc.end_date" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>End Date:</strong>
+                            <p t-field="doc.end_date"/>
+                        </div>
+                    </div>
+                    <div class="row mt32 mb32" id="informations">
+                        <div t-if="doc.rent_type" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>Rent Type:</strong>
+                            <p t-field="doc.rent_type"/>
+                        </div>
+                        <div t-if="doc.rent" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>Tenant Rent:</strong>
+                            <p t-field="doc.rent"/>
+                        </div>
+                        <div t-if="doc.total_rent" class="col-xs-4" style="bottom:10px;width:33%;">
+                            <strong>Total Rent:</strong>
+                            <p t-field="doc.total_rent"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Date</th>
+                                <th class="text-right">Rent Amount</th>
+                                <th class="text-right">Remaining Amount</th>
+                                <th class="text-left">Note</th>
+                                <th class="text-left">State</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-foreach="doc.rent_details_ids" t-as="l">
+                                <tr>
+                                    <td class="text-left">
+                                        <span t-field="l.date"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="l.rent_amount"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="l.remaining_amount"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="l.note"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="l.state"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="tenant_details_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="fims_property_management_system.tenant_details_doc" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
