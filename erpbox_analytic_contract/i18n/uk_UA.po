@@ -1,0 +1,340 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* simbioz_analytic_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-30 16:05+0000\n"
+"PO-Revision-Date: 2021-12-01 16:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://weblate.simbioz.com.ua/projects/"
+"darwinglobal/ext-simbioz_analytic_contract/uk/>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.9.1\n"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_ids
+msgid "Account Moves"
+msgstr "Видаткові накладні/акти"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_count
+msgid "Account Moves count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_line_ids
+#, python-format
+msgid "Account entries"
+msgstr "Бухгалтерські записи"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_line_count
+msgid "Account entries count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#, python-format
+msgid "Account moves"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_line_form
+msgid "Accounting"
+msgstr "Бухоблік"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_subtype__additional
+msgid "Additional"
+msgstr "Додатковий"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_analytic_account
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__analytic_account_id
+msgid "Analytic Account"
+msgstr "Аналітичний рахунок"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__analytic_tag_ids
+msgid "Analytic tags"
+msgstr "Аналітичний тег"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_bank_statement_line_ids
+msgid "Bank Operations"
+msgstr "Банківські операції"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_bank_statement_line_count
+msgid "Bank Operations count"
+msgstr "Кількість банківських операцій"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Рядок банківської виписки"
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#, python-format
+msgid "Bank operations"
+msgstr "Банківські операції"
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.account_bank_statement_line_menu_action
+#: model:ir.ui.menu,name:simbioz_analytic_contract.account_bank_statement_line_menu
+msgid "Bank statement lines"
+msgstr "Позиції банківських виписок"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,help:simbioz_analytic_contract.field_account_bank_statement_line__account_id
+msgid ""
+"Bank statements transactions will be posted on the suspense account until "
+"the final reconciliation allowing finding the right account."
+msgstr ""
+"Транзакції банківських виписок будуть опубліковані на тимчасовому рахунку, "
+"поки не відбудеться остаточне узгодження, що дозволяє знайти правильний "
+"рахунок."
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.res_partner_form_inherit
+msgid "Button for viewing contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.account_cash_statement_line_menu_action
+#: model:ir.ui.menu,name:simbioz_analytic_contract.account_cash_statement_line_menu
+msgid "Cash statement lines"
+msgstr "Позиції касової книги"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__is_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__contract_id
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_move_line_filter
+msgid "Contract"
+msgstr "Договір"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_subtype
+msgid "Contract Subtype"
+msgstr "Підтип договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_type
+msgid "Contract Type"
+msgstr "Тип договору"
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_analytic_account_form_inherit_budget
+msgid "Contract conditions"
+msgstr "Умови договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_currency_id
+msgid "Contract currency"
+msgstr "Валюта договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_date_end
+msgid "Contract date end"
+msgstr "Дата початку договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_date_start
+msgid "Contract date start"
+msgstr "Дата кінця договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_sign_date
+msgid "Contract sign date"
+msgstr "Дата підписання договору"
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/res_partner.py:0
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__analytic_account_contract_ids
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_users__analytic_account_contract_ids
+#, python-format
+msgid "Contracts"
+msgstr "Договори"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__analytic_account_contract_count
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_users__analytic_account_contract_count
+msgid "Contracts count"
+msgstr "Кількість договорів"
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.customer_contract_menu_action
+msgid "Customer Contracts"
+msgstr "Договори з клієнтами"
+
+#. module: simbioz_analytic_contract
+#: model:ir.ui.menu,name:simbioz_analytic_contract.customer_contract_menu
+msgid "Customer contracts"
+msgstr "Договори з клієнтами"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_analytic_account_form_inherit_budget
+msgid "Duration of the contract"
+msgstr "Тривалість договору"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__id
+msgid "ID"
+msgstr "ІД"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_bank_statement_line__payment_type__sale
+msgid "Income"
+msgstr "Надходження"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__is_indefinite
+msgid "Indefinite"
+msgstr "Безстроковий"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,help:simbioz_analytic_contract.field_account_analytic_account__is_contract
+msgid "Is contract"
+msgstr "Це договір"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_move
+msgid "Journal Entry"
+msgstr "Запис у журналі"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_move_line
+msgid "Journal Item"
+msgstr "Елемент журналу"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_bank_statement.py:0
+#, python-format
+msgid "Line \"%s\" amount must be greater than 0.0"
+msgstr "Сума рядка \"%s\" має бути більше 0.0"
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_bank_statement.py:0
+#, python-format
+msgid "Line \"%s\" amount must be less than 0.0"
+msgstr "Сума рядка \"%s\" має бути менше 0.0"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_subtype__main
+msgid "Main"
+msgstr "Основний"
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_line_form
+msgid "Notes"
+msgstr "Примітки"
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.act_action_open_items_wizard_partner_relation
+msgid "Open move lines"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_bank_statement_line__payment_type__purchase
+msgid "Outcome"
+msgstr "Витрата"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__parent_contract_id
+msgid "Parent contract"
+msgstr "Батьківський договор"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__payment_term_id
+msgid "Payment Term"
+msgstr "Умови оплати"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__payment_type
+msgid "Payment Type"
+msgstr "Тип платежу"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_payment
+msgid "Payments"
+msgstr "Платежі"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "Розумний пошук"
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.supplier_contract_menu_action
+msgid "Supplier Contracts"
+msgstr "Договори з постачальниками"
+
+#. module: simbioz_analytic_contract
+#: model:ir.ui.menu,name:simbioz_analytic_contract.supplier_contract_menu
+msgid "Supplier contracts"
+msgstr "Договори з постачальниками"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__account_id
+msgid "Suspense Account"
+msgstr "Тимчасовий рахунок"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_type__sale
+msgid "With customer"
+msgstr "З покупцем"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_type__purchase
+msgid "With purchase"
+msgstr "З постачальником"

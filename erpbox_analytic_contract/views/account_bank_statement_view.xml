@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_bank_statement_form" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.inherit</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="domain">[('type', 'in', ('cash','bank'))]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+                    <attribute name="editable"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='partner_id']" position="after">
+                    <field name="contract_id" context="{'default_is_contract': True}" domain="[('is_contract','=',True), ('partner_id', '=', partner_id)]"/>
+                    <field name="payment_type"/>
+                    <field name="account_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/button[@name='button_undo_reconciliation']" position="after">
+                    <button name="copy" type="object" icon="fa-clone" attrs="{'invisible': [('parent.state', '!=', 'open')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']" position="inside">
+                    <form>
+                        <header>
+
+                        </header>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="state" invisible="1"/>
+                            <field name="is_reconciled" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="partner_bank_id" invisible="1"/>
+                            <field name="country_code" invisible="1"/>
+                            <group>
+                                <field name="date" attrs="{'readonly': [('parent.state', '!=', 'open')]}"/>
+                                <field name="payment_type"/>
+                                <field name="payment_subtype"/>
+                                <field name="transaction_type"/>
+                                <field name="payment_ref"/>
+                                <field name="partner_id"
+                                       attrs="{'readonly': [('parent.state', '!=', 'open')], 'invisible': [('payment_type', 'not in', ['sale', 'purchase'])]}"
+                                       domain="['|', ('parent_id','=', False), ('is_company','=',True)]"/>
+                                <field name="contract_id"
+                                       context="{'default_is_contract': True, 'default_contract_type': payment_type}"
+                                       domain="[('is_contract','=',True), ('partner_id', '=', partner_id), ('contract_type', '=', payment_type)]"
+                                       attrs="{'invisible': [('payment_type', 'not in', ['sale', 'purchase'])]}"/>
+                                <field name="ref"/>
+                            </group>
+                            <group>
+                                <field name="amount" attrs="{'readonly': [('parent.state', '!=', 'open')]}"/>
+                                <field name="amount_currency" groups="base.group_multi_currency"
+                                       attrs="{'readonly': [('parent.state', '!=', 'open')]}"/>
+                                <field name="account_number" invisible="1"/>
+                                <field name="foreign_currency_id" groups="base.group_multi_currency"
+                                       attrs="{'readonly': [('parent.state', '!=', 'open')]}"/>
+                                <field name="narration" string="Notes"/>
+                            </group>
+                            <group name="account" string="Accounting">
+                                <field name="account_id"/>
+                                <field name="analytic_account_id"/>
+                                <field name="analytic_tag_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_bank_statement_line_form" model="ir.ui.view">
+            <field name="name">view_bank_statement_line_form.inherit</field>
+            <field name="model">account.bank.statement.line</field>
+            <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+            <field name="arch" type="xml">
+                <form position="replace">
+                    <form>
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="state" invisible="1"/>
+                                    <field name="is_reconciled" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="partner_bank_id" invisible="1"/>
+                                    <field name="country_code" invisible="1"/>
+                                    <field name="transaction_type" invisible="1"/>
+
+                                    <field name="statement_id" domain="[('state', '=', 'open')]"/>
+                                    <field name="date"/>
+                                    <field name="payment_type"/>
+                                    <field name="payment_subtype"/>
+                                    <field name="payment_ref"/>
+                                    <field name="partner_id"
+                                           domain="['|', ('parent_id','=', False), ('is_company','=',True)]"/>
+                                    <field name="contract_id"
+                                           context="{'default_is_contract': True, 'default_contract_type': payment_type}"
+                                           domain="[('is_contract','=',True), ('partner_id', '=', partner_id), ('contract_type', '=', payment_type)]"
+                                           attrs="{'invisible': [('payment_type', '=', False)]}"/>
+                                    <field name="ref"/>
+                                </group>
+
+                                <!--                            TODO add check parent state-->
+                                <group>
+                                    <field name="amount"/>
+                                    <field name="amount_currency" groups="base.group_multi_currency"/>
+                                    <field name="account_number" invisible="1"/>
+                                    <field name="foreign_currency_id" groups="base.group_multi_currency"/>
+                                    <field name="narration" string="Notes"/>
+                                </group>
+                                <group name="account" string="Accounting">
+                                    <field name="account_id"/>
+                                    <field name="analytic_account_id"/>
+                                    <field name="analytic_tag_ids" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bank_statement_line_tree" model="ir.ui.view">
+            <field name="name">account.bank.statement.line.tree</field>
+            <field name="model">account.bank.statement.line</field>
+            <field name="inherit_id" ref="account.view_bank_statement_line_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="create">true</attribute>
+                </tree>
+                <field name="statement_id" position="attributes">
+                    <attribute name="optional">show</attribute>
+                </field>
+                <xpath expr="//field[@name='narration']" position="after">
+                    <field name="contract_id" optional="hide"/>
+                    <field name="payment_type" optional="hide"/>
+                    <field name="analytic_account_id" optional="hide"/>
+                    <field name="analytic_tag_ids" optional="hide" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account_bank_statement_line_menu_action" model="ir.actions.act_window">
+            <field name="name">Bank statement lines</field>
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('journal_id.type', '=', 'bank')]</field>
+        </record>
+        <record id="account_cash_statement_line_menu_action" model="ir.actions.act_window">
+            <field name="name">Cash statement lines</field>
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('journal_id.type', '=', 'cash')]</field>
+        </record>
+        <record id="account_bank_statement_line_menu" model="ir.ui.menu">
+            <field name="parent_id" ref="erpbox_account_menu.menu_accounting_bank_and_cash"/>
+            <field name="name">Bank statement lines</field>
+            <field name="action" ref="erpbox_analytic_contract.account_bank_statement_line_menu_action"/>
+        </record>
+        <record id="account_cash_statement_line_menu" model="ir.ui.menu">
+            <field name="parent_id" ref="erpbox_account_menu.menu_accounting_bank_and_cash"/>
+            <field name="name">Cash statement lines</field>
+            <field name="action" ref="erpbox_analytic_contract.account_cash_statement_line_menu_action"/>
+            <field name="sequence">21</field>
+        </record>
+    </data>
+</odoo>

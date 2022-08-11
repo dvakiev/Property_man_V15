@@ -1,0 +1,333 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* simbioz_analytic_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-30 16:05+0000\n"
+"PO-Revision-Date: 2021-11-30 16:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_ids
+msgid "Account Moves"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_count
+msgid "Account Moves count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_line_ids
+#, python-format
+msgid "Account entries"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_move_line_count
+msgid "Account entries count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#, python-format
+msgid "Account moves"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_line_form
+msgid "Accounting"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_subtype__additional
+msgid "Additional"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_analytic_account
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__analytic_tag_ids
+msgid "Analytic tags"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_bank_statement_line_ids
+msgid "Bank Operations"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__account_bank_statement_line_count
+msgid "Bank Operations count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_analytic_account.py:0
+#, python-format
+msgid "Bank operations"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.account_bank_statement_line_menu_action
+#: model:ir.ui.menu,name:simbioz_analytic_contract.account_bank_statement_line_menu
+msgid "Bank statement lines"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,help:simbioz_analytic_contract.field_account_bank_statement_line__account_id
+msgid ""
+"Bank statements transactions will be posted on the suspense account until "
+"the final reconciliation allowing finding the right account."
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.res_partner_form_inherit
+msgid "Button for viewing contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.account_cash_statement_line_menu_action
+#: model:ir.ui.menu,name:simbioz_analytic_contract.account_cash_statement_line_menu
+msgid "Cash statement lines"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__is_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__contract_id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__contract_id
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_move_line_filter
+msgid "Contract"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_subtype
+msgid "Contract Subtype"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_type
+msgid "Contract Type"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_analytic_account_form_inherit_budget
+msgid "Contract conditions"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_currency_id
+msgid "Contract currency"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_date_end
+msgid "Contract date end"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_date_start
+msgid "Contract date start"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__contract_sign_date
+msgid "Contract sign date"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/res_partner.py:0
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__analytic_account_contract_ids
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_users__analytic_account_contract_ids
+#, python-format
+msgid "Contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__analytic_account_contract_count
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_users__analytic_account_contract_count
+msgid "Contracts count"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.customer_contract_menu_action
+msgid "Customer Contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.ui.menu,name:simbioz_analytic_contract.customer_contract_menu
+msgid "Customer contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__display_name
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_account_analytic_account_form_inherit_budget
+msgid "Duration of the contract"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__id
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_bank_statement_line__payment_type__sale
+msgid "Income"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__is_indefinite
+msgid "Indefinite"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,help:simbioz_analytic_contract.field_account_analytic_account__is_contract
+msgid "Is contract"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment____last_update
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_bank_statement.py:0
+#, python-format
+msgid "Line \"%s\" amount must be greater than 0.0"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: code:addons/simbioz_analytic_contract/models/account_bank_statement.py:0
+#, python-format
+msgid "Line \"%s\" amount must be less than 0.0"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_subtype__main
+msgid "Main"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:simbioz_analytic_contract.view_bank_statement_line_form
+msgid "Notes"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.act_action_open_items_wizard_partner_relation
+msgid "Open move lines"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_bank_statement_line__payment_type__purchase
+msgid "Outcome"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__parent_contract_id
+msgid "Parent contract"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__payment_term_id
+msgid "Payment Term"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__payment_type
+msgid "Payment Type"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model,name:simbioz_analytic_contract.model_account_payment
+msgid "Payments"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_analytic_account__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_payment__smart_search
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.actions.act_window,name:simbioz_analytic_contract.supplier_contract_menu_action
+msgid "Supplier Contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.ui.menu,name:simbioz_analytic_contract.supplier_contract_menu
+msgid "Supplier contracts"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields,field_description:simbioz_analytic_contract.field_account_bank_statement_line__account_id
+msgid "Suspense Account"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_type__sale
+msgid "With customer"
+msgstr ""
+
+#. module: simbioz_analytic_contract
+#: model:ir.model.fields.selection,name:simbioz_analytic_contract.selection__account_analytic_account__contract_type__purchase
+msgid "With purchase"
+msgstr ""

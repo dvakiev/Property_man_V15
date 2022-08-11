@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--TODO remove base_account_budget inherit-->
+        <record id="view_account_analytic_account_form_inherit_budget" model="ir.ui.view">
+            <field name="name">view_account_analytic_account_form_inherit_budget</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="base_account_budget.view_account_analytic_account_form_inherit_budget"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_contract"/>
+                    <field name="contract_type" attrs="{'invisible': [('is_contract', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='budget_line']/.." position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_contract', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='budget_line']/.." position="before">
+                    <page name="contract" string="Contract conditions"
+                          attrs="{'invisible': [('is_contract', '=', False)]}">
+                        <group>
+                            <group string="Duration of the contract">
+                                <field name="is_indefinite"/>
+                                <field name="contract_date_start"/>
+                                <field name="contract_date_end" attrs="{'readonly': [('is_indefinite', '=', True)]}"/>
+                                <field name="contract_sign_date"/>
+                            </group>
+                            <group string="Contract conditions">
+                                <field name="contract_currency_id"/>
+                                <field name="contract_subtype"/>
+                                <field name="payment_term_id"/>
+                                <field name="parent_contract_id"
+                                       attrs="{'required': [('contract_subtype', '=', 'additional')]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">view_account_analytic_account_form_inherit</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_open_account_move_line"
+                            icon="fa-th-list">
+                        <field name="account_move_line_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_open_account_move"
+                            icon="fa-th-list">
+                        <field name="account_move_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_open_account_bank_statement_line"
+                            icon="fa-usd">
+                        <field name="account_bank_statement_line_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="customer_contract_menu_action" model="ir.actions.act_window">
+            <field name="name">Customer Contracts</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">[('is_contract','=',True), ('contract_type', '=', 'sale')]</field>
+            <field name="context">{'default_is_contract': True, 'default_contract_type': 'sale'}</field>
+        </record>
+        <record id="supplier_contract_menu_action" model="ir.actions.act_window">
+            <field name="name">Supplier Contracts</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">[('is_contract','=',True), ('contract_type', '=', 'purchase')]</field>
+            <field name="context">{'default_is_contract': True, 'default_contract_type': 'purchase'}</field>
+        </record>
+
+        <record id="menu_account_customers_documents" model="ir.ui.menu">
+            <field name="parent_id" ref="account.menu_finance_receivables"/>
+            <field name="name">Documents</field>
+        </record>
+
+        <record id="menu_account_customers_directories" model="ir.ui.menu">
+            <field name="parent_id" ref="account.menu_finance_receivables"/>
+            <field name="name">Directories</field>
+        </record>
+        <!--Invoices-->
+        <record id="account.menu_action_move_out_invoice_type" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_documents"/>
+        </record>
+        <!--Credit notes-->
+        <record id="account.menu_action_move_out_refund_type" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_documents"/>
+        </record>
+        <!--Payments-->
+        <record id="account.menu_action_account_payments_receivable" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_documents"/>
+        </record>
+        <!--Products-->
+        <record id="account.product_product_menu_sellable" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_directories"/>
+        </record>
+        <!--Customers-->
+        <record id="account.menu_account_customer" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_directories"/>
+        </record>
+        <record id="customer_contract_menu" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_customers_documents"/>
+            <field name="name">Customer contracts</field>
+            <field name="action" ref="erpbox_analytic_contract.customer_contract_menu_action"/>
+        </record>
+
+        <record id="menu_account_vendors_documents" model="ir.ui.menu">
+            <field name="parent_id" ref="account.menu_finance_payables"/>
+            <field name="name">Documents</field>
+        </record>
+
+        <record id="menu_account_vendors_directories" model="ir.ui.menu">
+            <field name="parent_id" ref="account.menu_finance_payables"/>
+            <field name="name">Directories</field>
+        </record>
+        <!--Bills-->
+        <record id="account.menu_action_move_in_invoice_type" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_documents"/>
+        </record>
+        <!--Refunds-->
+        <record id="account.menu_action_move_in_refund_type" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_documents"/>
+        </record>
+        <!--Payments-->
+        <record id="account.menu_action_account_payments_payable" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_documents"/>
+        </record>
+        <!--Products-->
+        <record id="account.product_product_menu_purchasable" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_directories"/>
+        </record>
+        <!--Vendors-->
+        <record id="account.menu_account_supplier" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_directories"/>
+        </record>
+        <record id="supplier_contract_menu" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account_vendors_documents"/>
+            <field name="name">Supplier contracts</field>
+            <field name="action" ref="erpbox_analytic_contract.supplier_contract_menu_action"/>
+        </record>
+
+        <record id="erpbox_account_menu.menu_accounting_bank_and_cash" model="ir.ui.menu">
+            <field name="sequence">2</field>
+        </record>
+        <!--Generate Entries-->
+        <record id="account.menu_finance_entries_generate_entries" model="ir.ui.menu">
+            <field name="name">Assets</field>
+            <field name="sequence">3</field>
+        </record>
+        <!--Management-->
+        <record id="account.menu_finance_entries_management" model="ir.ui.menu">
+            <field name="sequence">4</field>
+        </record>
+        <!--Actions-->
+        <record id="account.menu_finance_entries_actions" model="ir.ui.menu">
+            <field name="sequence">5</field>
+        </record>
+        <!--Ledgers-->
+        <record id="account.menu_finance_entries_accounting_ledgers" model="ir.ui.menu">
+            <field name="sequence">6</field>
+        </record>
+        <!--Journals-->
+        <record id="account.menu_finance_entries_accounting_journals" model="ir.ui.menu">
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="base_accounting_kit.menu_action_account_asset_asset_form" model="ir.ui.menu">
+            <field name="parent_id" ref="account.menu_finance_entries_generate_entries"/>
+        </record>
+
+    </data>
+</odoo>

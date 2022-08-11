@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="analytic_account_contracts_action"
+                            icon="fa-th-list"
+                            help="Button for viewing contracts">
+                        <field name="analytic_account_contract_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="act_action_open_items_wizard_partner_relation" model="ir.actions.act_window">
+            <field name="name">Open move lines</field>
+            <field name="res_model">account.move.line</field>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account.view_move_line_tree"/>
+            <field name="domain">[('partner_id', '=', active_id)]</field>
+        </record>
+    </data>
+</odoo>
