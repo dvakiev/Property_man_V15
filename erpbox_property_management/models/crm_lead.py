@@ -22,6 +22,7 @@ class Lead(models.Model):
                 vals["property_details_id"] = self.env["property.details"].create({
                     "zip": vals.get("zip"),
                     "city": vals.get("city"),
+                    "name": vals.get("street"),
                     "street": vals.get("street"),
                     "state_id": vals.get("state_id"),
                     "country_id": vals.get("country_id"),
@@ -39,6 +40,7 @@ class Lead(models.Model):
             pid.write({
                 "zip": vals.get("zip", pid.zip),
                 "city": vals.get("city", pid.city),
+                "name": vals.get("street", pid.name),
                 "street": vals.get("street", pid.street),
                 "state_id": vals.get("state_id", pid.state_id.id),
                 "country_id": vals.get("country_id", pid.country_id.id),

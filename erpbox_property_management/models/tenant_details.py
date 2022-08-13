@@ -75,14 +75,14 @@ class Tenant(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if not "analytic_account_id" in vals:
+                vals["analytic_account_name"] = vals.get("code")
                 vals["analytic_account_id"] = self.env["account.analytic.account"].create({
-                    "code": vals.get("code"),
+                    "name": "/",
                     "group_id": vals.get("group_id"),
                     "parent_id": vals.get("parent_id"),
                     "partner_id": vals.get("partner_id"),
                     "company_id": vals.get("company_id"),
                     "is_contract": vals.get("is_contract"),
-                    "name": vals.get("analytic_account_name"),
                     "contract_type": vals.get("contract_type"),
                     "is_indefinite": vals.get("is_indefinite"),
                     "contract_date_end": vals.get("end_date"),
@@ -94,6 +94,9 @@ class Tenant(models.Model):
                     "contract_sign_date": vals.get("contract_sign_date"),
                 }).id
         res = super().create(vals_list)
+        for r in res:
+            r.analytic_account_name = r.code
+            r.analytic_account_id.code = r.code
         leads = res.filtered(lambda r: r.crm_lead_id).mapped("crm_lead_id")
         leads.stage_id = self.env.ref("erpbox_property_management.stage_contract").id
         return res
