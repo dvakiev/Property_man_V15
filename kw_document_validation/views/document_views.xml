@@ -1,0 +1,40 @@
+<odoo>
+    <record id="kw_document_validation_kw_document_tree" model="ir.ui.view">
+        <field name="name">kw.document.tree (kw_document_validation)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_tree"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_document_validation_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document_validation)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button string="Request" class="btn btn-primary"
+                        attrs="{'invisible':[('is_processable','=',False), ]}"
+                        name="action_processed" type="object"/>
+                <button string="Confirm" class="btn btn-primary"
+                        attrs="{'invisible':[('state','!=','process'), ]}"
+                        name="action_confirm" type="object"/>
+                <button string="Reject" class="btn btn-secondary"
+                        attrs="{'invisible':[('state','!=','process'), ]}"
+                        name="action_reject" type="object"/>
+                <field name="state" widget="statusbar"
+                        attrs="{'invisible':[('is_validatable','=',False), ]}"/>
+            </header>
+            <form position="inside">
+                <field name="is_validatable" invisible="1"/>
+                <field name="is_processable" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

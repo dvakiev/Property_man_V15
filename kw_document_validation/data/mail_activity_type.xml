@@ -1,0 +1,7 @@
+<odoo>
+    <record id="kw_document_validation_mail_activity_type_validation"
+            model="mail.activity.type">
+        <field name="name">Document validation</field>
+        <field name="icon">fa-passport</field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="kw_document_validation_kw_document_kind_form" model="ir.ui.view">
+        <field name="name">kw.document.kind.form (kw_document_validation)</field>
+        <field name="model">kw.document.kind</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_kind_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='page_ids']/tree" position="inside">
+                <field name="is_required"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
