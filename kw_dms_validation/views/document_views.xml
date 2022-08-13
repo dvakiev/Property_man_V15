@@ -1,0 +1,55 @@
+<odoo>
+
+    <record id="kw_dms_validation_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form (kw_document_template)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='storage_id']" position="after">
+                <field name="is_sequence_validation" readonly="1"/>
+                <field name="is_only_one_validator" readonly="1" attrs="{'invisible':[('is_sequence_validation','=',True),]}"/>
+                <field name="is_validate" readonly="1" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_processed']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_reject']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <notebook position="inside">
+                <page name="validations" string="Validations" attrs="{'invisible':[('is_validatable','=',False), ]}">
+                    <field name="validations_document_ids" widget="section_and_note_one2many"  mode="tree">
+                        <tree no_open="True" create="false" delete="false" edit="false">
+                            <field name="sequence" widget="handle" invisible="1"/>
+                            <field name="users_id"/>
+                            <field name="state"/>
+                            <field name="datetime"/>
+                            <button name="validate" type="object" string="Validate" class="btn-primary"/>
+                            <button name="reject" type="object" string="Reject" class="btn-primary"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+<!--    <record model="ir.actions.act_window"-->
+<!--            id="kw_document_validation_kw_document_action_window">-->
+<!--        <field name="name">Documents to Validate</field>-->
+<!--        <field name="res_model">kw.document</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="domain">-->
+<!--            ['|', ("state", "=", "draft"), ("state", "=", "process"),]-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <menuitem id="kw_dms_validation_kw_dms_directory_menu"-->
+<!--              action="kw_document_validation_kw_document_action_window"-->
+<!--              parent="kw_document.kw_document_main_menu"-->
+<!--              name="Documents to Validate" sequence="800"/>-->
+
+</odoo>

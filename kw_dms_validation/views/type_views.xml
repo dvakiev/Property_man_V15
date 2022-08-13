@@ -1,0 +1,24 @@
+<odoo>
+    <record id="kw_dms_validation_kw_document_type_form" model="ir.ui.view">
+        <field name="name">kw.document.type.form (kw_dms_validation)</field>
+        <field name="model">kw.document.type</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_validatable']" position="after">
+                <field name="is_sequence_validation" attrs="{'invisible':[('is_validatable','=',False), ]}"/>
+                <field name="is_only_one_validator" attrs="{'invisible':['|', ('is_validatable','=',False), ('is_sequence_validation','=',True), ]}"/>
+            </xpath>
+            <xpath expr="//page" position="after">
+                <page name="validations" string="Validations" attrs="{'invisible':[('is_validatable','=',False), ]}">
+                    <field name="validations_ids" widget="section_and_note_one2many"  mode="tree">
+                        <tree editable="top">
+                            <field name="sequence" widget="handle"/>
+                            <field name="users_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
