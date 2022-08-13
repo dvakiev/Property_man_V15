@@ -1,0 +1,33 @@
+<odoo>
+    <record id="kw_partner_document_validation_res_partner_form"
+            model="ir.ui.view">
+        <field name="name">res.partner.form (kw_partner_document_validation)
+        </field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+               ref="kw_partner_document.kw_partner_document_res_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='kw_partner_document_ids']/tree"
+                   position="inside">
+                <field name="state" invisible="1"/>
+                <field name="state_display" string="State"/>
+                <button string="Confirm" class="btn btn-primary"
+                        attrs="{'invisible':[('state','!=','process'), ]}"
+                        name="action_confirm" type="object"/>
+                <button string="Reject" class="btn btn-secondary"
+                        attrs="{'invisible':[('state','!=','process'), ]}"
+                        name="action_reject" type="object"/>
+            </xpath>
+            <xpath expr="//div[@id='document_button']" position="inside">
+                <field name="kw_document_validation_state" invisible="1"/>
+
+                <button string="Confirm requested" class="btn btn-primary"
+                        attrs="{'invisible':[('kw_document_validation_state','=',False), ]}"
+                        name="action_confirm_requested" type="object" style="margin-right: 15px;"/>
+                <button string="Reject requested" class="btn btn-secondary"
+                        attrs="{'invisible':[('kw_document_validation_state','=',False), ]}"
+                        name="action_reject_requested" type="object" style="margin-right: 15px;"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
