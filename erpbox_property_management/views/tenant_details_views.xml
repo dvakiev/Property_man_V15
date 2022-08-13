@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fims_tenant_details_form_view_inherit_erpbox_property" model="ir.ui.view">
+        <field name="name">tenant.details.view.form.inherit.erpbox.property</field>
+        <field name="model">tenant.details</field>
+        <field name="inherit_id" ref="fims_property_management_system.fims_tenant_details_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button string="Print contract" name="action_print_contract"
+                        attrs="{'invisible': [('document_template_id', '=', False)]}"
+                        type="object" class="oe_highlight"/>
+            </header>
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="product_id" attrs="{'readonly': [('state', '=', 'closed')]}"/>
+            </field>
+            <xpath expr="//sheet/group[1]" position="attributes">
+                <attribute name="col">3</attribute>
+            </xpath>
+            <xpath expr="//sheet/group[1]" position="inside">
+                <group name="document_template">
+                    <field name="document_template_id" />
+                </group>
+            </xpath>
+            <xpath expr="//sheet/group[2]" position="attributes">
+                <attribute name="col">3</attribute>
+            </xpath>
+            <xpath expr="//sheet/group[2]" position="inside">
+                <group name="contract_details">
+                    <field name="crm_lead_id" invisible="1"/>
+                    <field name="analytic_account_name" />
+                    <field name="is_contract" />
+                    <field name="contract_type" />
+                    <field name="group_id" />
+                    <field name="parent_id" />
+                    <field name="company_id" />
+                    <field name="is_indefinite" />
+                    <field name="contract_sign_date" />
+                    <field name="contract_subtype" />
+                    <field name="payment_term_id" />
+                    <field name="parent_contract_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

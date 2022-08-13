@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stage_contract" model="crm.stage">
+        <field name="name">Contract</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+</odoo>

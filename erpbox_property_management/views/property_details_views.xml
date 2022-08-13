@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fims_property_details_form_view_inherit_erpbox_property" model="ir.ui.view">
+        <field name="name">property.details.view.form.inherit.erpbox.property</field>
+        <field name="model">property.details</field>
+        <field name="inherit_id" ref="fims_property_management_system.fims_property_details_form_view"/>
+        <field name="arch" type="xml">
+            <field name="furnishing" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="facing" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="bedrooms" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="bathrooms" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="carpet_area" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="video_url" position="attributes"/>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="property_value" position="attributes"/>
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
