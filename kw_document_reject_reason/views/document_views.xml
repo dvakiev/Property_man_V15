@@ -1,0 +1,26 @@
+<odoo>
+    <record id="kw_document_reject_reason_kw_document_tree" model="ir.ui.view">
+        <field name="name">kw.document.tree (kw_document_reject_reason)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_tree"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reject_reason_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_document_reject_reason_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document_reject_reason)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group" position="inside">
+                <field name="reject_reason_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

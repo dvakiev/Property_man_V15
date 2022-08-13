@@ -1,0 +1,55 @@
+<odoo>
+    <record id="kw_document_reject_reason_kw_document_reject_reason_tree" model="ir.ui.view">
+        <field name="name">kw.document.reject.reason.tree (kw_document_reject_reason)</field>
+        <field name="model">kw.document.reject.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_document_reject_reason_kw_document_reject_reason_search" model="ir.ui.view">
+        <field name="name">kw.document.reject.reason.search (kw_document_reject_reason)</field>
+        <field name="model">kw.document.reject.reason</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"
+                       filter_domain="[('name','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kw_document_reject_reason_kw_document_reject_reason_form" model="ir.ui.view">
+        <field name="name">kw.form.form (kw_document_reject_reason)</field>
+        <field name="model">kw.document.reject.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <notebook/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_document_reject_reason_kw_document_reject_reason_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Reject reason</field>
+        <field name="res_model">kw.document.reject.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kw_document_reject_reason_kw_document_reject_reason_menu"
+              action="kw_document_reject_reason_kw_document_reject_reason_action_window"
+              parent="kw_document.kw_document_settings_main_menu"
+              name="Reject reason" sequence="100"/>
+</odoo>
