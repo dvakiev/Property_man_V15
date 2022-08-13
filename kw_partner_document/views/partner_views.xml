@@ -1,0 +1,42 @@
+<odoo>
+    <record id="kw_partner_document_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form (kw_partner_document)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+               ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Documents">
+                    <div id="document_button" style="padding-bottom: 10px;">
+                        <button name="%(kw_document.kw_document_kw_document_new_document_action_window)d"
+                                context="{'default_model': 'res.partner', 'default_res_id': id, 'default_partner_id': id}"
+                                string="Add document" type="action" style="margin-right: 15px;"/>
+                    </div>
+                    <field name="kw_partner_document_ids" context="{'default_model': 'res.partner', 'default_res_id': id, 'default_partner_id': id}">
+                        <tree>
+                            <field name="partner_id" optional="hidden"/>
+                            <field name="name" optional="hidden"/>
+                            <field name="type_id"/>
+                            <field name="model" optional="hidden"/>
+                            <field name="res_id" optional="hidden"/>
+                            <field name="reference" optional="hidden"/>
+                            <field name="preview" widget="image"/>
+                        </tree>
+                    </field>
+                    <field name="kw_document_ids" invisible="1">
+                        <tree>
+                            <field name="partner_id" optional="hidden"/>
+                            <field name="name" optional="hidden"/>
+                            <field name="type_id"/>
+                            <field name="model" optional="hidden"/>
+                            <field name="res_id" optional="hidden"/>
+                            <field name="reference" optional="hidden"/>
+                            <field name="preview" widget="image"/>
+                        </tree>
+                    </field>
+                    <field name="id" invisible="1"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
