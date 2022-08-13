@@ -1,0 +1,18 @@
+<odoo>
+
+    <record model="ir.actions.act_window"
+            id="kw_dms_vchasno_kw_vchasno_docment_action_window">
+        <field name="name">Documents</field>
+        <field name="res_model">kw.vchasno.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">
+            [("dms_document_id", "!=", False), ]
+        </field>
+    </record>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu"
+              action="kw_dms_vchasno.kw_dms_vchasno_kw_vchasno_docment_action_window"
+              parent="kw_document.kw_document_main_menu"
+              name="Vchasno Documents" sequence="900"/>
+
+</odoo>

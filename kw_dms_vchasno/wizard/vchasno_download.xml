@@ -1,0 +1,22 @@
+<odoo>
+
+    <record id="kw_dms_vchasno_kw_vchasno_download_document_wizard_views_form"
+            model="ir.ui.view" >
+        <field name="name">vchasno.download.document.wizard.form (kw_dms_vchasno)</field>
+        <field name="model">vchasno.download.document.wizard</field>
+        <field name="inherit_id" ref="kw_vchasno.kw_vchasno_download_document_wizard_views_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='file']" position="after">
+                <field name="is_dms" invisible="1"/>
+                <field name="is_no_attach" invisible="1"/>
+                <field name="ir_attachment_id" attrs="{'invisible': [('ir_attachment_id', '=', False)], 'readonly': [('is_dms', '=', True)]}"/>
+                <field name="filename" attrs="{'invisible': ['|', ('is_dms', '=', False), ('ir_attachment_id', '!=', False)], }"/>
+                <field name="dms_document_id" readonly="1" attrs="{'invisible': [('is_dms', '=', False)], 'required': [('is_dms', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='file']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_dms', '!=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

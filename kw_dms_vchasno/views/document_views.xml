@@ -1,0 +1,46 @@
+<odoo>
+    <record id="kw_dms_vchasno_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_dms_vchasno)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='attachment_id']" position="after">
+                <field name="vchasno_document_id" attrs="{'invisible': [('vchasno_document_id', '=', False)],}"/>
+                <field name="vchasno_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="send_vchasno" type="object"
+                        string="Send to Vchasno"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kw_dms_vchasno_kw_document_tree" model="ir.ui.view">
+        <field name="name">kw.document.tree (kw_dms_vchasno)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='dms_download_document']" position="before">
+                <button name="send_vchasno" type="object"
+                        string="Send to Vchasno"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kw_dms_vchasno_kw_document_search" model="ir.ui.view">
+        <field name="name">kw.document.search (kw_dms_vchasno)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//searchpanel" position="inside">
+                <field name="vchasno_id" select="multi" icon="fa-folder" enable_counters="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

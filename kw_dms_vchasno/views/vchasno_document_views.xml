@@ -1,0 +1,16 @@
+<odoo>
+    <record model="ir.ui.view" id="kw_dms_vchasno_kw_vchasno_document_form">
+        <field name="name">kw.vchasno.document.form (kw_dms_vchasno)</field>
+        <field name="model">kw.vchasno.document</field>
+        <field name="inherit_id" ref="kw_vchasno.kw_vchasno_kw_vchasno_document_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vchasno_id']" position="after">
+                <field name="dms_document_id"  attrs="{'invisible': [('dms_document_id', '=', False)],}"/>
+            </xpath>
+            <xpath expr="//field[@name='file']" position="after">
+                <field name="dms_file" filename="name" attrs="{'invisible': [('dms_file', '=', False)],}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
