@@ -1,0 +1,13 @@
+<odoo>
+    <record id="kw_document_template_kw_document_kind_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document_template)</field>
+        <field name="model">kw.document.kind</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_kind_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[2]" position="inside">
+                <field name="is_generated"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

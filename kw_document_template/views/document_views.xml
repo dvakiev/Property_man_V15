@@ -1,0 +1,33 @@
+<odoo>
+    <record id="kw_document_template_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document_template)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Content" attrs="{'invisible':[('is_generated','=',False)]}">
+                    <field name="body" readonly='1' widget="html" options="{'style-inline': true}"/>
+                </page>
+                <page string="Header and footer" attrs="{'invisible':[('is_generated','=',False)]}">
+                    <group>
+                        <field name="header" readonly='1' widget="html" options="{'style-inline': true}"/>
+                        <field name="footer" readonly='1' widget="html" options="{'style-inline': true}"/>
+                    </group>
+                </page>
+            </notebook>
+            <page name="pages" position="attributes">
+                <attribute name="attrs">{'invisible':['|','|',('id','=',False),('is_pdf','=',True),('is_generated','=',True)]}</attribute>
+            </page>
+            <header position="inside">
+                <button string="Print preview" class="btn btn-primary"
+                        attrs="{'invisible':[('is_generated','=',False), ]}"
+                        name="route_print_pdf" type="object"/>
+            </header>
+            <form position="inside">
+                <field name="is_generated" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>
