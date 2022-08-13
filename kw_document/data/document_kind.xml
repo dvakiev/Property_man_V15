@@ -1,0 +1,32 @@
+<odoo>
+    <record id="kw_document_kind_with_two_sides" model="kw.document.kind">
+        <field name="name">Document with two sides</field>
+        <field name="is_multi_page" eval="1"/>
+        <field name="is_page_qty_fixed" eval="1"/>
+        <field name="page_qty">2</field>
+        <field name="min_page_qty">2</field>
+        <field name="is_pages_predefined" eval="1"/>
+    </record>
+
+    <record id="kw_document_kind_page_with_two_sides_front"
+            model="kw.document.kind.page">
+        <field name="name">Front side</field>
+        <field name="sequence" eval="1"/>
+        <field name="kind_id" ref="kw_document_kind_with_two_sides"/>
+        <field name="code">front</field>
+    </record>
+
+    <record id="kw_document_kind_page_with_two_sides_back"
+            model="kw.document.kind.page">
+        <field name="name">Back side</field>
+        <field name="sequence" eval="2"/>
+        <field name="kind_id" ref="kw_document_kind_with_two_sides"/>
+        <field name="code">back</field>
+    </record>
+
+    <record id="kw_document_kind_with_one_sides" model="kw.document.kind">
+        <field name="name">Document with one sides</field>
+        <field name="is_multi_page" eval="0"/>
+    </record>
+
+</odoo>

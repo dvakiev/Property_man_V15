@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem name="Documents" id="kw_document_main_menu"
+              web_icon="kw_document,static/description/icon.png"/>
+
+    <menuitem name="Settings" id="kw_document_settings_main_menu"
+              parent="kw_document_main_menu" sequence="9999"/>
+
+</odoo>

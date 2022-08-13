@@ -1,0 +1,10 @@
+<odoo>
+    <record id="kw_document_type_passport" model="kw.document.type">
+        <field name="name">Passport</field>
+        <field name="code">passport</field>
+        <field name="kind_id" ref="kw_document.kw_document_kind_with_two_sides"/>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="is_uniq" eval="1"/>
+    </record>
+
+</odoo>
