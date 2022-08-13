@@ -1,0 +1,30 @@
+<odoo>
+    <record id="kw_partner_confirmation_status_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form (kw_partner_confirmation_status)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+               ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Status">
+                    <div id="document_button" style="padding-bottom: 10px;">
+                        <button name="fill_kw_confirmation_status"
+                                context="{'default_model': 'res.partner', 'default_res_id': id}"
+                                string="Fill and check statuses" type="object" style="margin-right: 15px;"/>
+                    </div>
+                    <field name="kw_confirmation_status_ids">
+                        <tree>
+                            <field name="status_id"/>
+                            <field name="model" optional="hidden"/>
+                            <field name="res_id" optional="hidden"/>
+                            <field name="reference" optional="hidden"/>
+                            <field name="state"/>
+                            <field name="state_stored"/>
+                        </tree>
+                    </field>
+                    <field name="id" invisible="1"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
