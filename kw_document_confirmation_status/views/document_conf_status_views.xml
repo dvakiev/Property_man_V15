@@ -1,0 +1,80 @@
+<odoo>
+    <record id="kw_document_confirmation_status_kw_document_confirmation_status_tree" model="ir.ui.view">
+        <field name="name">kw.document.confirmation.status.tree (kw_document)</field>
+        <field name="model">kw.document.confirmation.status</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="model_id"/>
+                <field name="field_ids" widget="many2many_tags"/>
+                <field name="type_ids" widget="many2many_tags"/>
+                <field name="status_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_document_confirmation_status_search" model="ir.ui.view">
+        <field name="name">kw.document.confirmation.status.search (kw_document)</field>
+        <field name="model">kw.document.confirmation.status</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"
+                       filter_domain="[('name','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_document_confirmation_status_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document)</field>
+        <field name="model">kw.document.confirmation.status</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="model_id"/>
+                        </group>
+                        <group/>
+                    </group>
+                    <group>
+                        <field name="field_ids" widget="many2many_tags"
+                               domain="[('id','in',field_ro_ids)]"/>
+                    </group>
+                    <group>
+                        <field name="type_ids" widget="many2many_tags"
+                               domain="[('id','in',type_ro_ids)]"/>
+                    </group>
+                    <group>
+                        <field name="status_ids" widget="many2many_tags"
+                               domain="[('id','in',status_ro_ids)]"/>
+                    </group>
+                    <notebook/>
+                </sheet>
+                <field name="field_ro_ids" invisible="1"/>
+                <field name="type_ro_ids" invisible="1"/>
+                <field name="status_ro_ids" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_document_confirmation_status_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Document confirmation status</field>
+        <field name="res_model">kw.document.confirmation.status</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kw_document_confirmation_status_kw_document_confirmation_status_menu"
+              action="kw_document_confirmation_status_kw_document_confirmation_status_action_window"
+              parent="kw_document.kw_document_settings_main_menu"
+              name="Document confirmation status" sequence="100"/>
+</odoo>

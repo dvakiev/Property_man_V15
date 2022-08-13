@@ -1,0 +1,61 @@
+<odoo>
+    <record id="kw_document_confirmation_status_kw_confirmation_status_tree" model="ir.ui.view">
+        <field name="name">kw.confirmation.status.tree (kw_document_confirmation_status)</field>
+        <field name="model">kw.confirmation.status</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="model"/>
+                <field name="res_id"/>
+                <field name="status_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_confirmation_status_search" model="ir.ui.view">
+        <field name="name">kw.confirmation.status.search (kw_document_confirmation_status)</field>
+        <field name="model">kw.confirmation.status</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model"
+                       filter_domain="[('model','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_confirmation_status_form" model="ir.ui.view">
+        <field name="name">kw.form.form (kw_document_confirmation_status)</field>
+        <field name="model">kw.confirmation.status</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model"/>
+                            <field name="res_id"/>
+                            <field name="status_id"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <notebook/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_document_confirmation_status_kw_confirmation_status_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Confirmation status</field>
+        <field name="res_model">kw.confirmation.status</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kw_document_confirmation_status_kw_confirmation_status_menu"
+              action="kw_document_confirmation_status_kw_confirmation_status_action_window"
+              parent="kw_document.kw_document_settings_main_menu"
+              name="Confirmation status" sequence="100"/>
+</odoo>
