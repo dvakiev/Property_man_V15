@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="rule_directory_computed_create" model="ir.rule">
+        <field name="name">Apply computed create permissions.</field>
+        <field name="model_id" ref="model_kw_dms_directory" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_create', '=', user.id)]</field>
+    </record>
+    <record id="rule_directory_computed_read" model="ir.rule">
+        <field name="name">Apply computed read permissions.</field>
+        <field name="model_id" ref="model_kw_dms_directory" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_read', '=', user.id)]</field>
+    </record>
+    <record id="rule_directory_computed_unlink" model="ir.rule">
+        <field name="name">Apply computed unlink permissions.</field>
+        <field name="model_id" ref="model_kw_dms_directory" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('permission_unlink', '=', user.id)]</field>
+    </record>
+    <record id="rule_directory_computed_write" model="ir.rule">
+        <field name="name">Apply computed write permissions.</field>
+        <field name="model_id" ref="model_kw_dms_directory" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_write', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_security_groups_user" model="ir.rule">
+        <field name="name">User can only edit and delete their own groups.</field>
+        <field name="model_id" ref="model_kw_dms_access_group" />
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+    </record>
+    <record id="rule_security_groups_manager" model="ir.rule">
+        <field name="name">Admins can edit and delete all groups.</field>
+        <field name="model_id" ref="model_kw_dms_access_group" />
+        <field name="groups" eval="[(4, ref('base.group_erp_manager'))]" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[(1 ,'=', 1)]</field>
+    </record>
+
+    <record id="rule_document_computed_create" model="ir.rule">
+        <field name="name">Apply computed create permissions.</field>
+        <field name="model_id" ref="model_kw_document" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_create', '=', user.id)]</field>
+    </record>
+    <record id="rule_document_computed_read" model="ir.rule">
+        <field name="name">Apply computed read permissions.</field>
+        <field name="model_id" ref="model_kw_document" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_read', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_document_computed_unlink" model="ir.rule">
+        <field name="name">Apply computed unlink permissions.</field>
+        <field name="model_id" ref="model_kw_document" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('permission_unlink', '=', user.id)]</field>
+    </record>
+    <record id="rule_document_computed_write" model="ir.rule">
+        <field name="name">Apply computed write permissions.</field>
+        <field name="model_id" ref="model_kw_document" />
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="0" />
+        <field name="domain_force">[('permission_write', '=', user.id)]</field>
+    </record>
+
+</odoo>

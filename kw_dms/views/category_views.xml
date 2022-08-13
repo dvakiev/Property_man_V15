@@ -1,0 +1,88 @@
+<odoo>
+    <record id="kw_dms_kw_dms_category_tree" model="ir.ui.view">
+        <field name="name">kw.dms.category.tree (kw_dms)</field>
+        <field name="model">kw.dms.category</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="(not active)">
+                <field name="active" />
+                <field name="name" />
+                <field name="parent_id" />
+                <field name="tag_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_category_form_1" model="ir.ui.view">
+        <field name="name">kw.dms.category.form (kw_dms)</field>
+        <field name="model">kw.dms.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="Invoices" />
+                            <field name="active" invisible="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="parent_id" />
+                        </group>
+                        <group>
+                            <field name="count_categories" string="Subcategories" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="count_tags" string="Tags" />
+                        </group>
+                        <group>
+                            <field name="count_files" string="Files" />
+                            <field name="count_directories" string="Directories" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tags">
+                            <field
+                                name="tag_ids"
+                                mode="kanban"
+                                context="{'default_category_id': active_id}"
+                            />
+                        </page>
+                        <page string="Subcategories">
+                            <field
+                                name="child_category_ids"
+                                widget="one2many"
+                                mode="tree"
+                                context="{'default_parent_id': active_id}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_category_action_window" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">kw.dms.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Category.
+            </p>
+            <p>
+                Categories are used to categorize Documents.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="kw_dms_category_menu"
+        name="Categories" sequence="200"
+        parent="kw_dms_setting_menu"
+        action="kw_dms_kw_dms_category_action_window"/>
+
+</odoo>

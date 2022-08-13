@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+
+    <record id="kw_dms_kw_document_kind_page_attachment"
+            model="kw.document.kind">
+        <field name="name">Attachment</field>
+    </record>
+
+    <record id="kw_dms_kw_document_type_attachment" model="kw.document.type">
+        <field name="name">Attachment</field>
+        <field name="is_for_attach_dir">True</field>
+        <field name="code">999999</field>
+        <field name="kind_id" ref="kw_dms.kw_dms_kw_document_kind_page_attachment"/>
+        <field name="model_id" ref="model_kw_document_type"/>
+    </record>
+
+</odoo>

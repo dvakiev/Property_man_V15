@@ -1,0 +1,18 @@
+<odoo>
+    <record id="kw_dms_document_type_form" model="ir.ui.view">
+        <field name="name">kw.document.type.form (kw_dms)</field>
+        <field name="model">kw.document.type</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_uniq']" position="after">
+                <field name="is_for_attach_dir" attrs="{'invisible': [('is_for_attach_dir', '=', False)]}"/>
+                <field name="is_automatic_sequence"/>
+            </xpath>
+            <xpath expr="//field[@name='model_id']" position="after">
+                <field name="sequence_id" attrs="{'invisible': [('is_automatic_sequence', '=', False)], 'required': [('is_automatic_sequence', '=', True)] ,}"/>
+                <field name="directory_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': [('is_for_attach_dir', '=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

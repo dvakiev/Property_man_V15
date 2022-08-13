@@ -1,0 +1,75 @@
+<odoo>
+
+    <record id="kw_dms_kw_document_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_dms)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type_id']" position="after">
+                <field name="directory_id"/>
+                <field name="category_id" attrs="{'invisible': [('category_id', '=', False)]}"/>
+                <field name="storage_id"/>
+            </xpath>
+            <xpath expr="//field[@name='url']" position="before">
+                <field name="attachment_id" attrs="{'invisible': [('attachment_id', '=', False)]}"/>
+                <button name="dms_download_document" type="object"
+                        string="Download Document"
+                        class="btn-primary" attrs="{'invisible': [('attachment_id', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='url']" position="attributes">
+                <attribute name="attrs">{'invisible': [('attachment_id', '!=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='file']" position="attributes">
+                <attribute name="attrs">{'invisible': [('attachment_id', '!=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_document_tree" model="ir.ui.view">
+        <field name="name">kw.document.tree (kw_dms)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='url']" position="before">
+                <field name="attachment_id" invisible="True"/>
+                <button name="dms_download_document" type="object"
+                        string="Download Document"
+                        class="btn-primary"/>
+            </xpath>
+            <xpath expr="//field[@name='url']" position="attributes">
+                <attribute name="optional">hidden</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_document_search" model="ir.ui.view">
+        <field name="name">kw.document.search (kw_dms)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="All Files" name="all"
+                        domain="['|',('active', '=',  False), ('active', '!=',  False)]"/>
+                <filter string="My Files" name="filter_user"
+                        domain="[('create_uid', '=', uid)]"/>
+                <separator/>
+                <filter string="Creation Date" name="filter_create"
+                        date="create_date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_storage" string="Storage" domain="[]"
+                            context="{'group_by':'storage_id'}"/>
+                    <filter name="group_directory" string="Directories"
+                            domain="[]" context="{'group_by':'directory_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="directory_id" icon="fa-folder"
+                           enable_counters="1"/>
+                </searchpanel>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

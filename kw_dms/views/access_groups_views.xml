@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="kw_dms_kw_dms_access_groups_tree" model="ir.ui.view">
+        <field name="name">kw.dms.access.groups.tree (kw_dms)</field>
+        <field name="model">kw.dms.access.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="perm_create" />
+                <field name="perm_write" />
+                <field name="perm_unlink" />
+                <field name="perm_read" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_access_groups_form" model="ir.ui.view">
+        <field name="name">kw.dms.access.groups.form (kw_dms)</field>
+        <field name="model">kw.dms.access.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="hr_department_id"/>
+                        </group>
+                    </group>
+                    <group string="Settings">
+                        <field name="perm_create" />
+                        <field name="perm_write" />
+                        <field name="perm_unlink" />
+                        <field name="perm_read" />
+                    </group>
+                    <notebook>
+                        <page name="users" string="Users">
+                            <field name="users">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="login"/>
+                                    <field name="lang"/>
+                                    <field name="login_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="kw_dms_kw_dms_access_groups_action_window" model="ir.actions.act_window">
+        <field name="name">Access Groups</field>
+        <field name="res_model">kw.dms.access.group</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('kw_dms_kw_dms_access_groups_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('kw_dms_kw_dms_access_groups_form')})]"
+        />
+    </record>
+
+    <menuitem
+        id="kw_dms_access_groups_menu"
+        name="Access Group" sequence="400"
+        groups='kw_document.group_kw_document_admin'
+        parent="kw_dms_setting_menu"
+        action="kw_dms_kw_dms_access_groups_action_window"/>
+</odoo>

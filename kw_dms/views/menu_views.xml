@@ -1,0 +1,8 @@
+<odoo>
+
+    <menuitem
+            id="kw_dms_setting_menu"
+            name="DMS" sequence="9999"
+            parent="kw_document.kw_document_settings_main_menu"/>
+
+</odoo>
