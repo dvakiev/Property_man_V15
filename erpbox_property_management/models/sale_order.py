@@ -9,3 +9,7 @@ class SaleOrder(models.Model):
         string="Contract",
         required=True,
     )
+    tenant_id = fields.Many2one(
+        comodel_name="tenant.details",
+        string="Tenant",
+    )

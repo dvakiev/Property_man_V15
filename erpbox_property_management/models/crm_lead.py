@@ -59,7 +59,7 @@ class Lead(models.Model):
             "res_model": "tenant.details",
             "view_mode": "form",
             "context": {
-                "default_lead_id": self.id,
+                "default_crm_lead_id": self.id,
                 "default_partner_id": pid.id if pid else False,
                 "default_property_id": self.property_details_id.id,
                 "default_currency_id": self.env.ref("base.UAH").id,

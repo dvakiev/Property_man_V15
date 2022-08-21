@@ -6,6 +6,9 @@
         <field name="model">tenant.details</field>
         <field name="inherit_id" ref="fims_property_management_system.fims_tenant_details_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="." position="attributes">
+                <attribute name="create">0</attribute>
+            </xpath>
             <header position="inside">
                 <button string="Print contract" name="action_print_contract"
                         attrs="{'invisible': [('document_template_id', '=', False)]}"
@@ -47,6 +50,9 @@
                 <field name="payment_state" />
             </xpath>
             <field name="deposit" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="deposit_return" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="is_deposit_received" position="attributes">

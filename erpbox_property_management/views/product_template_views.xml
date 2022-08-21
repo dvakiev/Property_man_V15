@@ -12,4 +12,15 @@
         </field>
     </record>
 
+    <record id="product_normal_form_view_inherit_erpbox_property" model="ir.ui.view">
+        <field name="name">product.product.view.form.inherit.erpbox.property</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="auto_validation" />
+            </field>
+        </field>
+    </record>
+
 </odoo>

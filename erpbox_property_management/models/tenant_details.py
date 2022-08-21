@@ -70,6 +70,16 @@ class Tenant(models.Model):
         string="Contract template",
     )
 
+    @api.depends()
+    def compute_invoice_counter(self):
+        for r in self:
+            invoices = r.rent_details_ids.mapped('invoice_id')
+            so = self.env["sale.order"].search([
+                ('tenant_id', '=', r.id)])
+            for _so in so:
+                invoices |= _so.invoice_ids
+            r.invoice_counter = len(invoices)
+
     @api.onchange("product_id")
     def _onchange_product_id(self):
         for r in self:
@@ -101,8 +111,9 @@ class Tenant(models.Model):
         for r in res:
             r.analytic_account_name = r.code
             r.analytic_account_id.code = r.code
-        leads = res.filtered(lambda r: r.crm_lead_id).mapped("crm_lead_id")
-        leads.stage_id = self.env.ref("erpbox_property_management.stage_contract").id
+            if r.crm_lead_id:
+                r.crm_lead_id.stage_id = self.env.ref(
+                    "erpbox_property_management.stage_contract").id
         return res
 
     def write(self, vals):
@@ -145,6 +156,8 @@ class Tenant(models.Model):
         self.ensure_one()
         if self.state != "closed":
             super().compute_rent()
+            self.state = "in_progress"
+            self.property_id.state = "on_lease"
         rent_details = self.rent_details_ids.filtered(
             lambda r: not r.invoice_id)
         other_account = self.env['ir.property']._get('property_account_expense_categ_id', 'product.category')
@@ -153,7 +166,8 @@ class Tenant(models.Model):
                 "move_type": "out_invoice",
                 "partner_id": self.partner_id.id,
                 "invoice_date": fields.Date.today(),
-                "line_ids": [fields.Command.create({
+                "contract_id": self.analytic_account_id.id,
+                "invoice_line_ids": [fields.Command.create({
                     "product_id": self.product_id.id,
                     "name": rd.tenant_id.code + " Rent for : " + str(rd.date),
                     "account_id": other_account and other_account.id or False,
@@ -172,8 +186,19 @@ class Tenant(models.Model):
             "res_model": "sale.order",
             "view_mode": "form",
             "context": {
+                "default_tenant_id": self.id,
                 "default_partner_id": self.partner_id.id,
-                "analytic_contract_id": self.analytic_account_id.id,
+                "default_analytic_contract_id": self.analytic_account_id.id,
             }
         }
 
+    def view_invoice(self):
+        self.ensure_one()
+        invoices = self.rent_details_ids.mapped('invoice_id')
+        so = self.env["sale.order"].search([
+            ('tenant_id', '=', self.id)])
+        for _so in so:
+            invoices |= _so.invoice_ids
+        action = super().view_invoice()
+        action["domain"] = [('id', 'in', invoices.ids)]
+        return action
