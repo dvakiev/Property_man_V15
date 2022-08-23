@@ -10,6 +10,7 @@
     ],
     'author': 'Dmytro Pavlov <dmitriy.paulov@gmail.com>',
     'data': [
+        'data/ir_cron_data.xml',
         'data/crm_stage_data.xml',
         'views/crm_lead_views.xml',
         'views/sale_order_views.xml',

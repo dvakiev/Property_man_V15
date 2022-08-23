@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 days = list(map(str, range(1, 32)))
@@ -11,3 +11,25 @@ class ProductTemplate(models.Model):
         selection=list(zip(days, days)),
         string="Auto Validation",
     )
+
+    @api.model
+    def cron_auto_validate_tenant_invoices(self):
+        today = fields.Date.today()
+        current_day = str(today.day)
+        products = self.env["product.product"].search([
+            ("auto_validation", "=", current_day)])
+        for product in products:
+            tenants = self.env["tenant.details"].search([
+                ("state", "=", "in_progress"),
+                ("product_id", "=", product.id)])
+            for tenant in tenants:
+                rds = tenant.rent_details_ids.filtered(
+                    lambda r: r.date <= today and r.payment_state != "paid")
+                for rd in rds:
+                    rd.invoice_id.action_post()
+                    check_balance = sum(self.env["account.move.line"].search([
+                            ("partner_id", "=", tenant.partner_id.id)
+                        ]).mapped("balance")) * -1
+                    if check_balance > 0:
+                        wizard = self.env["account.payment.register"].create({})
+                        wizard.action_create_payments()
