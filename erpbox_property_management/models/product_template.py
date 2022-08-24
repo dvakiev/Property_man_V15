@@ -1,3 +1,4 @@
+import json
 from odoo import models, fields, api
 
 
@@ -32,5 +33,6 @@ class ProductTemplate(models.Model):
                 for rd in rds:
                     inv = rd.invoice_id
                     inv.action_post()
-                    if inv.invoice_has_outstanding and rd.payment_state != "paid" and inv.line_ids:
-                        inv.js_assign_outstanding_line(inv.line_ids[0].id)
+                    if inv.invoice_has_outstanding and rd.payment_state != "paid":
+                        widget_data = json.loads(inv.invoice_outstanding_credits_debits_widget)
+                        inv.js_assign_outstanding_line(widget_data["content"][0]["id"])
