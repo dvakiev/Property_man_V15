@@ -22,6 +22,8 @@ class PropertyDetails(models.Model):
                         order="date desc",
                         limit=1,
                     )
+                    if not last_paid and tenant.rent_details_ids:
+                        last_paid = tenant.rent_details_ids[0]
                     if last_paid:
                         days = abs((last_paid.date - today).days)
                         tenant.write({
