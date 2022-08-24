@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from odoo.exceptions import UserError
 
 
 days = list(map(str, range(1, 32)))
@@ -26,15 +25,12 @@ class ProductTemplate(models.Model):
                 ("product_id", "=", product.id)])
 
             for tenant in tenants:
-                check_balance = sum(self.env["account.move.line"].search([
-                        ("partner_id", "=", tenant.partner_id.id)
-                    ]).mapped("balance")) * -1
                 rds = tenant.rent_details_ids.filtered(
                     lambda r: r.date <= today and \
                     r.invoice_id.state != "posted")
 
                 for rd in rds:
-                    rd.invoice_id.action_post()
-                    if check_balance > 0 and rd.payment_state != "paid":
-                        wizard = self.env["account.payment.register"].create({})
-                        wizard.action_create_payments()
+                    inv = rd.invoice_id
+                    inv.action_post()
+                    if inv.invoice_has_outstanding and rd.payment_state != "paid" and inv.line_ids:
+                        inv.js_assign_outstanding_line(inv.line_ids[0].id)
