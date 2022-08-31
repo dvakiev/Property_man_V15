@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="category_o" model="catuttc.category">
+            <field name="name">Області та АРК</field>
+            <field name="letter">O</field>
+        </record>
+        <record id="category_k" model="catuttc.category">
+            <field name="name">Міста зі спеціальним статусом</field>
+            <field name="letter">K</field>
+        </record>
+        <record id="category_p" model="catuttc.category">
+            <field name="name">Райони областей</field>
+            <field name="letter">P</field>
+        </record>
+        <record id="category_h" model="catuttc.category">
+            <field name="name">Об'єднання територіальних громад</field>
+            <field name="letter">H</field>
+        </record>
+        <record id="category_m" model="catuttc.category">
+            <field name="name">Міста</field>
+            <field name="letter">M</field>
+        </record>
+        <record id="category_t" model="catuttc.category">
+            <field name="name">Селища міського типу</field>
+            <field name="letter">T</field>
+        </record>
+        <record id="category_c" model="catuttc.category">
+            <field name="name">Села</field>
+            <field name="letter">C</field>
+        </record>
+        <record id="category_x" model="catuttc.category">
+            <field name="name">Селища</field>
+            <field name="letter">X</field>
+        </record>
+        <record id="category_b" model="catuttc.category">
+            <field name="name">Райони населених пунктів</field>
+            <field name="letter">B</field>
+        </record>
+    </data>
+</odoo>

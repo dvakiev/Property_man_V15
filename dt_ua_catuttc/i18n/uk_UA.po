@@ -1,0 +1,382 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dt_ua_catuttc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-25 19:16+0000\n"
+"PO-Revision-Date: 2021-10-25 19:16+0000\n"
+"Last-Translator: Dmitriy Pavlov <dmitriy.paulov@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_mixin
+msgid "CATUTTC"
+msgstr "КАТОТТГ"
+
+#. module: dt_ua_catuttc
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.view_partner_form_inherit_treba
+msgid "CATUTTC Address"
+msgstr "КАТОТТГ адреса"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.catuttc_category_action
+msgid "CATUTTC Categories"
+msgstr "КАТОТТГ Категорії"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_category
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_category_view_form
+msgid "CATUTTC Category"
+msgstr "КАТОТТГ Категорія"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_community
+msgid "CATUTTC Community"
+msgstr "КАТОТТГ Об'єднання територіальних громад"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_locality
+msgid "CATUTTC Locality"
+msgstr "КАТОТТГ Населений пункт"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_locality_district
+msgid "CATUTTC Locality district"
+msgstr "КАТОТТГ Район населеного пункту"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_region
+msgid "CATUTTC Region"
+msgstr "КАТОТТГ Область"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_catuttc_district
+msgid "CATUTTC Region district"
+msgstr "КАТОТТГ Район області"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__code
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__code
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__code
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__code
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin__code
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__code
+msgid "CATUTTC code"
+msgstr "КАТОТТГ Код"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__category_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__category_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__category_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__category_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin__category_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__category_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_search
+msgid "Category"
+msgstr "Категорія"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__name
+msgid "Category name"
+msgstr "Назва категорії"
+
+#. module: dt_ua_catuttc
+#: model:ir.module.category,name:dt_ua_catuttc.module_category_catuttc
+msgid "Catuttc"
+msgstr "КАТОТТГ"
+
+#. module: dt_ua_catuttc
+#: model:res.groups,name:dt_ua_catuttc.group_catuttc_manager
+msgid "Catuttc Administrator"
+msgstr "КАТОТТГ Адміністратор"
+
+#. module: dt_ua_catuttc
+#: model:res.groups,name:dt_ua_catuttc.group_catuttc_user
+msgid "Catuttc User"
+msgstr "КАТОТТГ Користувач"
+
+#. module: dt_ua_catuttc
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_root_menu
+msgid "Cities"
+msgstr "Міста"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.action_catuttc_community
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__community_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__community_ids
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_community_menu
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_tree
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_form
+msgid "Communities"
+msgstr "Об'єднання територіальних громад"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__communities_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__communities_count
+msgid "Communities count"
+msgstr "Кіл-ть ОТГ"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__community_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__community_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__community_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__community_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_search
+msgid "Community"
+msgstr "ОТГ"
+
+#. module: dt_ua_catuttc
+#: model:ir.model,name:dt_ua_catuttc.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__create_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__create_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__create_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__create_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__create_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__create_uid
+msgid "Created by"
+msgstr "Створювач"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__create_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__create_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__create_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__create_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__create_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__create_date
+msgid "Created on"
+msgstr "Створено"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__display_name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Відображена назву"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__district_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__district_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__district_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__district_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__district_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_search
+msgid "District"
+msgstr "Район"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.action_catuttc_district
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__district_ids
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_district_menu
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_tree
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_form
+msgid "Districts"
+msgstr "Райони"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__districts_count
+msgid "Districts count"
+msgstr "Кіл-ть районів"
+
+#. module: dt_ua_catuttc
+#: model:ir.module.category,description:dt_ua_catuttc.module_category_catuttc
+msgid "Helps you manage UA catuttc."
+msgstr "Допоможе вам керувати Українським кодифікатором населених пунктів"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region____last_update
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__write_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__write_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__write_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__write_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__write_uid
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__write_uid
+msgid "Last Updated by"
+msgstr "Останній оновлювач"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__write_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__write_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__write_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__write_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__write_date
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__write_date
+msgid "Last Updated on"
+msgstr "Оновлено востаннє"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_category__letter
+msgid "Letter"
+msgstr "Літера"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.action_catuttc_locality
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__locality_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__locality_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__locality_ids
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_locality_menu
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_tree
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_form
+msgid "Localities"
+msgstr "Населені пункти"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__localities_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__localities_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__localities_count
+msgid "Localities count"
+msgstr "Кіл-ть населених пунктів"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__locality_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__locality_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__locality_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_form
+msgid "Locality"
+msgstr "Населений пункт"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__locality_district_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__locality_district_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_form
+msgid "Locality district"
+msgstr "Район нас. пункту"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.action_catuttc_locality_district
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__locality_district_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__locality_district_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__locality_district_ids
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__locality_district_ids
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_locality_district_menu
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_form
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_tree
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_form
+msgid "Locality districts"
+msgstr "Райони нас. пункту"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__locality_districts_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__locality_districts_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__locality_districts_count
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__locality_districts_count
+msgid "Locality districts count"
+msgstr "Кіл-ть районів нас. пунктів"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_mixin__name
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: dt_ua_catuttc
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_ref_menu
+msgid "References"
+msgstr "Довідник"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_community__region_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_district__region_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality__region_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_locality_district__region_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__region_id
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__region_id
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_community_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_district_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_locality_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_form
+msgid "Region"
+msgstr "Область"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_partner__region_special
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_res_users__region_special
+msgid "Region special"
+msgstr "Місто зі спеціальним статусом"
+
+#. module: dt_ua_catuttc
+#: model:ir.actions.act_window,name:dt_ua_catuttc.action_catuttc_region
+#: model:ir.ui.menu,name:dt_ua_catuttc.catuttc_region_menu
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_search
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_tree
+msgid "Regions"
+msgstr "Області"
+
+#. module: dt_ua_catuttc
+#: model:ir.model.fields,field_description:dt_ua_catuttc.field_catuttc_region__special
+#: model_terms:ir.ui.view,arch_db:dt_ua_catuttc.catuttc_region_view_search
+msgid "Special"
+msgstr "Спеціальний статус"
+
+#. module: dt_ua_catuttc
+#: model:res.groups,comment:dt_ua_catuttc.group_catuttc_user
+msgid "The user will be able to see catuttc records."
+msgstr "Користувач зможе бачити записи КАТОТТГ"
+
+#. module: dt_ua_catuttc
+#: model:res.groups,comment:dt_ua_catuttc.group_catuttc_manager
+msgid ""
+"The user will have access to creation, edition and removing catuttc records."
+msgstr "Користувач зможе створювати, редагувати та видаляти записи КАТОТТГ"

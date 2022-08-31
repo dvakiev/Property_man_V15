@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="catuttc_category_action" model="ir.actions.act_window">
+        <field name="name">CATUTTC Categories</field>
+        <field name="res_model">catuttc.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="catuttc_category_view_form" model="ir.ui.view">
+        <field name="name">catuttc.category.view.form</field>
+        <field name="model">catuttc.category</field>
+        <field name="arch" type="xml">
+            <form string="CATUTTC Category">
+                <div class="oe_title">
+                    <div>
+                        <label for="name" />
+                        <field name="name" />
+                    </div>
+                    <div>
+                        <label for="letter" />
+                        <field name="letter" />
+                    </div>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

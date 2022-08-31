@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_catuttc_community" model="ir.actions.act_window">
+        <field name="name">Communities</field>
+        <field name="res_model">catuttc.community</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="catuttc_community_view_tree" model="ir.ui.view">
+        <field name="name">catuttc.community.view.tree</field>
+        <field name="model">catuttc.community</field>
+        <field name="arch" type="xml">
+            <tree string="Communities">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="region_id" />
+                <field name="district_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="catuttc_community_view_search" model="ir.ui.view">
+        <field name="name">catuttc.community.view.search</field>
+        <field name="model">catuttc.community</field>
+        <field name="arch" type="xml">
+            <search string="Communities">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="region_id" />
+                <field name="district_id" />
+                <group name="Group By">
+                    <filter name="groupby_category_id" string="Category"
+                            context="{'group_by': 'category_id'}" />
+                    <filter name="groupby_region_id" string="Region"
+                            context="{'group_by': 'region_id'}" />
+                    <filter name="groupby_district_id" string="District"
+                            context="{'group_by': 'district_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="catuttc_community_view_form" model="ir.ui.view">
+        <field name="name">catuttc.community.view.form</field>
+        <field name="model">catuttc.community</field>
+        <field name="arch" type="xml">
+            <form string="Community">
+                <field name="localities_count" invisible="1" />
+                <field name="locality_districts_count" invisible="1" />
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_localities" type="object" class="oe_stat_button"
+                                icon="fa-building" attrs="{'invisible': [('localities_count', '=', 0)]}">
+                            <field name="localities_count" string="Localities" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_locality_districts" type="object" class="oe_stat_button" icon="fa-building"
+                                attrs="{'invisible': [('locality_districts_count', '=', 0)]}">
+                            <field name="locality_districts_count" string="Locality districts" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <field name="name" class="h3"/>
+                    </div>
+                    <group>
+                        <field name="code" />
+                        <field name="category_id" />
+                    </group>
+                    <group>
+                        <field name="region_id" />
+                        <field name="district_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

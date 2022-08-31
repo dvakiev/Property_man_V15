@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="security_posts_menu"
+        name="Security Posts"
+        action="erpbox_security_post_action"
+        parent="contacts.res_partner_menu_config"
+        sequence="1"/>
+
+</odoo>

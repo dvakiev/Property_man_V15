@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_catuttc_locality_district" model="ir.actions.act_window">
+        <field name="name">Locality districts</field>
+        <field name="res_model">catuttc.locality.district</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="catuttc_locality_district_view_tree" model="ir.ui.view">
+        <field name="name">catuttc.locality.district.view.tree</field>
+        <field name="model">catuttc.locality.district</field>
+        <field name="arch" type="xml">
+            <tree string="Locality districts">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="region_id" />
+                <field name="district_id" />
+                <field name="community_id" />
+                <field name="locality_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="catuttc_locality_district_view_search" model="ir.ui.view">
+        <field name="name">catuttc.locality.district.view.search</field>
+        <field name="model">catuttc.locality.district</field>
+        <field name="arch" type="xml">
+            <search string="Locality districts">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="region_id" />
+                <field name="district_id" />
+                <field name="community_id" />
+                <field name="locality_id" />
+                <group name="Group By">
+                    <filter name="groupby_category_id" string="Category"
+                            context="{'group_by': 'category_id'}" />
+                    <filter name="groupby_region_id" string="Region"
+                            context="{'group_by': 'region_id'}" />
+                    <filter name="groupby_district_id" string="District"
+                            context="{'group_by': 'district_id'}" />
+                    <filter name="groupby_community_id" string="Community"
+                            context="{'group_by': 'community_id'}" />
+                    <filter name="groupby_locality_id" string="Locality"
+                            context="{'group_by': 'locality_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="catuttc_locality_district_view_form" model="ir.ui.view">
+        <field name="name">catuttc.locality.district.view.form</field>
+        <field name="model">catuttc.locality.district</field>
+        <field name="arch" type="xml">
+            <form string="Locality district">
+                <sheet>
+                    <div class="oe_title">
+                        <field name="name" class="h3"/>
+                    </div>
+                    <group>
+                        <field name="code" />
+                        <field name="category_id" />
+                    </group>
+                    <group>
+                        <field name="region_id" />
+                        <field name="district_id" />
+                        <field name="community_id" />
+                        <field name="locality_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

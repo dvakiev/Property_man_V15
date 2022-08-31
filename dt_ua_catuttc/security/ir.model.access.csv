@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_catuttc_category_user,catuttc.category,model_catuttc_category,group_catuttc_user,1,0,0,0
+access_catuttc_region_user,catuttc.region,model_catuttc_region,group_catuttc_user,1,0,0,0
+access_catuttc_district_user,catuttc.district,model_catuttc_district,group_catuttc_user,1,0,0,0
+access_catuttc_community_user,catuttc.community,model_catuttc_community,group_catuttc_user,1,0,0,0
+access_catuttc_locality_user,catuttc.locality,model_catuttc_locality,group_catuttc_user,1,0,0,0
+access_catuttc_locality_district_user,catuttc.locality.district,model_catuttc_locality_district,group_catuttc_user,1,0,0,0
+access_catuttc_category_manager,catuttc.category,model_catuttc_category,group_catuttc_manager,1,1,1,1
+access_catuttc_region_manager,catuttc.region,model_catuttc_region,group_catuttc_manager,1,1,1,1
+access_catuttc_district_manager,catuttc.district,model_catuttc_district,group_catuttc_manager,1,1,1,1
+access_catuttc_community_manager,catuttc.community,model_catuttc_community,group_catuttc_manager,1,1,1,1
+access_catuttc_locality_manager,catuttc.locality,model_catuttc_locality,group_catuttc_manager,1,1,1,1
+access_catuttc_locality_district_manager,catuttc.locality.district,model_catuttc_locality_district,group_catuttc_manager,1,1,1,1

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_dottek_catuttc" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.dottek.catuttc</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <span name="address_name" position="after">
+                <group name="catuttc" string="CATUTTC Address">
+                    <field name="region_special" invisible="1"/>
+                    <field name="region_id" />
+                    <field name="district_id"
+                            attrs="{'invisible': [('region_special', '=', True)],
+                                    'required': [('region_special', '=', False)]}"/>
+                    <field name="community_id"
+                            attrs="{'invisible': [('region_special', '=', True)],
+                                    'required': [('region_special', '=', False)]}"/>
+                    <field name="locality_id"
+                            attrs="{'invisible': [('region_special', '=', True)],
+                                    'required': [('region_special', '=', False)]}"/>
+                    <field name="locality_district_id" />
+                </group>
+            </span>
+        </field>
+    </record>
+</odoo>

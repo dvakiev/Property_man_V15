@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_catuttc_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="res_model">catuttc.region</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="catuttc_region_view_tree" model="ir.ui.view">
+        <field name="name">catuttc.region.view.tree</field>
+        <field name="model">catuttc.region</field>
+        <field name="arch" type="xml">
+            <tree string="Regions">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="special" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="catuttc_region_view_search" model="ir.ui.view">
+        <field name="name">catuttc.region.view.search</field>
+        <field name="model">catuttc.region</field>
+        <field name="arch" type="xml">
+            <search string="Regions">
+                <field name="code" />
+                <field name="name" />
+                <field name="category_id" />
+                <group name="Group By">
+                    <filter name="groupby_category_id" string="Category"
+                            context="{'group_by': 'category_id'}" />
+                    <filter name="special" string="Special"
+                            domain="[('special', '=', True)]" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="catuttc_region_view_form" model="ir.ui.view">
+        <field name="name">catuttc.region.view.form</field>
+        <field name="model">catuttc.region</field>
+        <field name="arch" type="xml">
+            <form string="Region">
+                <field name="districts_count" invisible="1" />
+                <field name="communities_count" invisible="1" />
+                <field name="localities_count" invisible="1" />
+                <field name="locality_districts_count" invisible="1" />
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_districts" type="object" class="oe_stat_button"
+                                icon="fa-building" attrs="{'invisible': [('districts_count', '=', 0)]}">
+                            <field name="districts_count" string="Districts" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_communities" type="object" class="oe_stat_button"
+                                icon="fa-building" attrs="{'invisible': [('communities_count', '=', 0)]}">
+                            <field name="communities_count" string="Communities" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_localities" type="object" class="oe_stat_button"
+                                icon="fa-building" attrs="{'invisible': [('localities_count', '=', 0)]}">
+                            <field name="localities_count" string="Localities" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_locality_districts" type="object" class="oe_stat_button" icon="fa-building"
+                                attrs="{'invisible': [('locality_districts_count', '=', 0)]}">
+                            <field name="locality_districts_count" string="Locality districts" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <field name="name" class="h3"/>
+                    </div>
+                    <group>
+                        <field name="code" />
+                        <field name="category_id" />
+                        <field name="special" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

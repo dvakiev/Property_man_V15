@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="erpbox_security_post_action" model="ir.actions.act_window">
+        <field name="name">Security Posts</field>
+        <field name="res_model">erpbox.security.post</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="erpbox_security_post_view_tree" model="ir.ui.view">
+        <field name="name">erpbox.security.post.view.tree</field>
+        <field name="model">erpbox.security.post</field>
+        <field name="arch" type="xml">
+            <tree string="Security Posts">
+                <field name="number" />
+                <field name="name" />
+                <field name="locality_district_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="erpbox_security_post_view_form" model="ir.ui.view">
+        <field name="name">erpbox.security.post.view.form</field>
+        <field name="model">erpbox.security.post</field>
+        <field name="arch" type="xml">
+            <form string="Security Post">
+                <sheet>
+                    <group>
+                        <group name="general">
+                            <field name="name" />
+                            <field name="number" />
+                        </group>
+                        <group name="other">
+                            <field name="locality_district_id" />
+                            <field name="sequence_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

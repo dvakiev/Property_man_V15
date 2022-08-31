@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="catuttc_root_menu"
+        name="Cities"
+        groups="group_catuttc_manager"
+        web_icon="dt_ua_catuttc,static/description/icon.png"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_ref_menu"
+        name="References"
+        groups="group_catuttc_manager"
+        parent="catuttc_root_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_region_menu"
+        name="Regions"
+        action="action_catuttc_region"
+        groups="group_catuttc_manager"
+        parent="catuttc_ref_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_district_menu"
+        name="Districts"
+        action="action_catuttc_district"
+        groups="group_catuttc_manager"
+        parent="catuttc_ref_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_community_menu"
+        name="Communities"
+        action="action_catuttc_community"
+        groups="group_catuttc_manager"
+        parent="catuttc_ref_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_locality_menu"
+        name="Localities"
+        action="action_catuttc_locality"
+        groups="group_catuttc_manager"
+        parent="catuttc_ref_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="catuttc_locality_district_menu"
+        name="Locality districts"
+        action="action_catuttc_locality_district"
+        groups="group_catuttc_manager"
+        parent="catuttc_ref_menu"
+        sequence="10"/>
+
+</odoo>
