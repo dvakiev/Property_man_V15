@@ -29,6 +29,7 @@ class Lead(models.Model):
                     "property_type_id": vals.get("property_type_id"),
                     "currency_id": self.env.ref("base.UAH").id,
                     "date": fields.Date.context_today(self),
+                    "partner_id": vals.get("partner_id"),
                     "user_id": vals.get("user_id"),
                 }).id
         return super().create(vals_list)
@@ -46,6 +47,7 @@ class Lead(models.Model):
                 "country_id": vals.get("country_id", pid.country_id.id),
                 "property_type_id": vals.get("property_type_id", pid.property_type_id.id),
                 "currency_id": vals.get("currency_id", pid.currency_id.id),
+                "partner_id": vals.get("partner_id", pid.partner_id.id),
                 "user_id": vals.get("user_id", pid.user_id.id),
             })
         return res

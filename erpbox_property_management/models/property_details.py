@@ -7,6 +7,12 @@ DAYS_IN_MONTH = 30
 class PropertyDetails(models.Model):
     _inherit = "property.details"
 
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Related customer",
+        required=True,
+    )
+
     def write(self, vals):
         _state = vals.get("state")
         today = fields.Date.today()

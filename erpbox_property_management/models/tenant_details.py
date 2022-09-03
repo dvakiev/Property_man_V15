@@ -89,6 +89,8 @@ class Tenant(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if not "analytic_account_id" in vals:
+                product = self.env["product.product"].browse(vals.get("product_id"))
+                vals["name"] = product.name
                 vals["analytic_account_name"] = vals.get("code")
                 vals["analytic_account_id"] = self.env["account.analytic.account"].create({
                     "name": "/",
@@ -97,7 +99,7 @@ class Tenant(models.Model):
                     "partner_id": vals.get("partner_id"),
                     "company_id": vals.get("company_id"),
                     "is_contract": vals.get("is_contract"),
-                    "contract_type": vals.get("contract_type"),
+                    "contract_type": vals.get("contract_type", 'sale'),
                     "is_indefinite": vals.get("is_indefinite"),
                     "contract_date_end": vals.get("end_date"),
                     "contract_date_start": vals.get("start_date"),

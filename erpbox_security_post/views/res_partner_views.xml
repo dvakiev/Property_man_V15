@@ -8,9 +8,11 @@
         <field name="arch" type="xml">
             <field name="category_id" position="after">
                 <field name="security_post_id" />
+                <field name="code" />
             </field>
             <xpath expr="//notebook/page[@name='contact_addresses']//form//field[@name='mobile']" position="after">
                 <field name="security_post_id" />
+                <field name="code" />
             </xpath>
         </field>
     </record>
