@@ -7,7 +7,7 @@ class Partner(models.Model):
     security_post_id = fields.Many2one(
         comodel_name="erpbox.security.post",
         string="Security Post №",
-        required=True,
+        required=False,
     )
     code = fields.Char(
         string="Contract №",

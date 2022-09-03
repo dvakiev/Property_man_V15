@@ -10,14 +10,11 @@
                     <field name="region_special" invisible="1"/>
                     <field name="region_id" />
                     <field name="district_id"
-                            attrs="{'invisible': [('region_special', '=', True)],
-                                    'required': [('region_special', '=', False)]}"/>
+                            attrs="{'invisible': [('region_special', '=', True)]}"/>
                     <field name="community_id"
-                            attrs="{'invisible': [('region_special', '=', True)],
-                                    'required': [('region_special', '=', False)]}"/>
+                            attrs="{'invisible': [('region_special', '=', True)]}"/>
                     <field name="locality_id"
-                            attrs="{'invisible': [('region_special', '=', True)],
-                                    'required': [('region_special', '=', False)]}"/>
+                            attrs="{'invisible': [('region_special', '=', True)]}"/>
                     <field name="locality_district_id" />
                 </group>
             </span>
