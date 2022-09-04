@@ -12,6 +12,7 @@ class Partner(models.Model):
     code = fields.Char(
         string="Contract №",
         compute="_compute_code",
+        store=True
     )
 
     def _compute_code(self):

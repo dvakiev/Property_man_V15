@@ -33,3 +33,12 @@ class SecurityPost(models.Model):
     def _compute_display_name(self):
         for r in self:
             r.display_name = _("Security Post №%d", (r.number))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        for r in res:
+            self.env["account.analytic.tag"].sudo().create({
+                "name": r.display_name
+            })
+        return res

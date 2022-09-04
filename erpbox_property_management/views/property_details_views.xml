@@ -27,6 +27,9 @@
             <field name="property_value" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <span name="address_name" position="before">
+                <field name="partner_id" />
+            </span>
         </field>
     </record>
 
