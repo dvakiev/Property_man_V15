@@ -20,7 +20,6 @@ class Tenant(models.Model):
             lambda r: r.invoice_id)
         security_post_name = self.partner_id.security_post_id.display_name
         for rd in rent_details:
-            lines = rd.invoice_id.invoice_line_ids.filtered(
-                lambda r: not r.analytic_tag_ids)
-            lines.analytic_tag_ids = self.env["account.analytic.tag"].sudo().search([
-                ("name", "=", security_post_name)]).ids
+            lines = rd.invoice_id.invoice_line_ids
+            lines.analytic_tag_ids |= self.env["account.analytic.tag"].sudo().search([
+                ("name", "=", security_post_name)])

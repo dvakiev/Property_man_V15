@@ -12,6 +12,10 @@ class Tenant(models.Model):
     analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
     )
+    analytic_tag_ids = fields.Many2many(
+        comodel_name="account.analytic.tag",
+        string="Analytic Tags",
+    )
     debit = fields.Monetary(related="analytic_account_id.debit")
     credit = fields.Monetary(related="analytic_account_id.credit")
     balance = fields.Monetary(related="analytic_account_id.balance")
@@ -154,8 +158,12 @@ class Tenant(models.Model):
         dt = self.document_template_id
         return dt.report_template.report_action(self, None)
 
+    def post_compute_rent(self):
+        pass
+
     def compute_rent(self, qty=1):
         self.ensure_one()
+        print("COMPUTE RENT TENANT")
         if self.state != "closed":
             super().compute_rent()
             self.state = "in_progress"
@@ -163,9 +171,11 @@ class Tenant(models.Model):
         rent_details = self.rent_details_ids.filtered(
             lambda r: not r.invoice_id)
         other_account = self.env['ir.property']._get('property_account_expense_categ_id', 'product.category')
+        print("INVOICES")
         for rd in rent_details:
             rd.invoice_id = self.env["account.move"].with_context({"check_move_validity": False}).create([{
                 "move_type": "out_invoice",
+                "partner_id": self.partner_id.id,
                 "invoice_date": fields.Date.today(),
                 "contract_id": self.analytic_account_id.id,
                 "invoice_line_ids": [fields.Command.create({
@@ -175,10 +185,10 @@ class Tenant(models.Model):
                     "price_unit": rd.rent_amount,
                     "quantity": qty,
                     "analytic_account_id": rd.tenant_id.analytic_account_id.id,
+                    "analytic_tag_ids": self.analytic_tag_ids.ids,
                     "exclude_from_invoice_tab": False,
                 })]
             }])
-            rd.invoice_id.partner_id = self.partner_id
 
     def action_add_service(self):
         self.ensure_one()

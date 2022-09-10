@@ -6,9 +6,6 @@
         <field name="model">tenant.details</field>
         <field name="inherit_id" ref="fims_property_management_system.fims_tenant_details_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="." position="attributes">
-                <attribute name="create">0</attribute>
-            </xpath>
             <header position="inside">
                 <button string="Print contract" name="action_print_contract"
                         attrs="{'invisible': [('document_template_id', '=', False)]}"
@@ -21,6 +18,7 @@
             </field>
             <field name="name" position="after">
                 <field name="product_id" attrs="{'readonly': [('state', '=', 'closed')]}"/>
+                <field name="analytic_tag_ids" widget="many2many_tags"/>
             </field>
             <xpath expr="//sheet/group[1]" position="attributes">
                 <attribute name="col">3</attribute>
@@ -69,9 +67,6 @@
         <field name="model">tenant.details</field>
         <field name="inherit_id" ref="fims_property_management_system.fims_tenant_details_view"/>
         <field name="arch" type="xml">
-            <xpath expr="." position="attributes">
-                <attribute name="create">0</attribute>
-            </xpath>
             <field name="end_date" position="after">
                 <field name="currency_id" invisible="1"/>
                 <field name="debit" />
