@@ -1,6 +1,6 @@
 {
     'name': 'DMS Vchasno',
-    'version': '15.0.1.0.1',
+    'version': '15.0.1.0.3',
     'license': 'Other proprietary',
     'category': 'Document',
 
@@ -9,6 +9,7 @@
 
     'depends': ['kw_dms', 'kw_vchasno'],
     'data': [
+        'security/security.xml',
         'views/document_views.xml',
         'views/vchasno_document_views.xml',
         'views/dms_vchasno_document.xml',

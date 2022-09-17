@@ -1,0 +1,7 @@
+<odoo noupdate="1">
+        <record id="hide" model="res.groups">
+            <field name="name">Hide</field>
+            <field name="comment">Hide.</field>
+        </record>
+</odoo>
+

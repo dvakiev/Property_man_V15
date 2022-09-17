@@ -3,9 +3,9 @@
         <field name="name">kw.document.form.form (kw_dms_vchasno)</field>
         <field name="model">kw.document</field>
         <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_form"/>
+               ref="kw_dms.kw_dms_kw_dms_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='attachment_id']" position="after">
+            <xpath expr="//field[@name='url']" position="before">
                 <field name="vchasno_document_id" attrs="{'invisible': [('vchasno_document_id', '=', False)],}"/>
                 <field name="vchasno_id" invisible="1"/>
             </xpath>
@@ -21,9 +21,9 @@
         <field name="name">kw.document.tree (kw_dms_vchasno)</field>
         <field name="model">kw.document</field>
         <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_tree"/>
+               ref="kw_dms.kw_dms_kw_dms_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='dms_download_document']" position="before">
+            <xpath expr="//field[@name='url']" position="before">
                 <button name="send_vchasno" type="object"
                         string="Send to Vchasno"
                         class="btn-primary"/>
@@ -35,7 +35,7 @@
         <field name="name">kw.document.search (kw_dms_vchasno)</field>
         <field name="model">kw.document</field>
         <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_search"/>
+               ref="kw_dms.kw_dms_kw_dms_search"/>
         <field name="arch" type="xml">
             <xpath expr="//searchpanel" position="inside">
                 <field name="vchasno_id" select="multi" icon="fa-folder" enable_counters="1"/>

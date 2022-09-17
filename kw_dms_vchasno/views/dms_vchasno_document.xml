@@ -5,14 +5,75 @@
         <field name="name">Documents</field>
         <field name="res_model">kw.vchasno.document</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">
-            [("dms_document_id", "!=", False), ]
-        </field>
+    </record>
+
+    <record id="kw_vchasno_kw_vchasno_category_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Category List</field>
+        <field name="res_model">kw.vchasno.category</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="kw_vchasno_kw_vchasno_status_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Status List</field>
+        <field name="res_model">kw.vchasno.status</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="kw_vchasno_kw_vchasno_key_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Key</field>
+        <field name="res_model">kw.vchasno.key</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <record model="ir.actions.act_window"
+            id="kw_vchasno_kw_vchasno_log_action_window">
+        <field name="name">Log</field>
+        <field name="res_model">kw.vchasno.log</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem id="kw_dms_vchasno_kw_dms_directory_menu"
-              action="kw_dms_vchasno.kw_dms_vchasno_kw_vchasno_docment_action_window"
-              parent="kw_document.kw_document_main_menu"
+              parent="kw_dms.kw_dms_main_menu"
               name="Vchasno Documents" sequence="900"/>
 
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_2"
+              action="kw_dms_vchasno.kw_dms_vchasno_kw_vchasno_docment_action_window"
+              parent="kw_dms_vchasno.kw_dms_vchasno_kw_dms_directory_menu"
+              name="Documents" sequence="10"/>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_3"
+          parent="kw_dms_vchasno_kw_dms_directory_menu"
+          name="Catalog:" sequence="20"/>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_4"
+              parent="kw_dms_vchasno_kw_dms_directory_menu_3"
+              action="kw_vchasno_kw_vchasno_status_action_window"
+              name="Status List" sequence="30"/>
+
+    <menuitem id="kw_vchasno_kw_vchasno_category_menu_5"
+              parent="kw_dms_vchasno_kw_dms_directory_menu_3"
+              action="kw_vchasno_kw_vchasno_category_action_window"
+              name="Category List" sequence="40"/>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_6"
+          parent="kw_dms_vchasno_kw_dms_directory_menu"
+          name="Setting:" sequence="50"/>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_7"
+              parent="kw_dms_vchasno_kw_dms_directory_menu_6"
+              action="kw_vchasno_kw_vchasno_key_action_window"
+              name="Key" sequence="60"/>
+
+    <menuitem id="kw_dms_vchasno_kw_dms_directory_menu_8"
+              parent="kw_dms_vchasno_kw_dms_directory_menu_6"
+              action="kw_vchasno_kw_vchasno_log_action_window"
+              name="Log" sequence="70"/>
+
+    <menuitem id="kw_vchasno.kw_vchasno_main_menu"
+              name="" sequence="70" groups="hide"/>
+
 </odoo>
+
