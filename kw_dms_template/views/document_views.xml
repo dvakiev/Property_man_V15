@@ -1,0 +1,35 @@
+<odoo>
+    <record id="kw_dms_template_kw_dms_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_dms_template)</field>
+        <field name="model">kw.document</field>
+        <field name="inherit_id"
+               ref="kw_dms.kw_dms_kw_dms_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Content" attrs="{'invisible':[('is_generated','=',False)]}">
+                    <field name="body" widget="html" options="{'style-inline': true}"/>
+                </page>
+                <page string="Header and footer" attrs="{'invisible':[('is_generated','=',False)]}">
+                    <group>
+                        <field name="header" widget="html" options="{'style-inline': true}"/>
+                        <field name="footer" widget="html" options="{'style-inline': true}"/>
+                    </group>
+                </page>
+            </notebook>
+            <page name="pages" position="attributes">
+                <attribute name="attrs">{'invisible':['|',('id','=',False),('is_generated','=',True)]}</attribute>
+            </page>
+            <header position="inside">
+                <button string="Print preview" class="btn btn-primary"
+                        attrs="{'invisible':[('is_generated','=',False), ]}"
+                        name="route_print_pdf" type="object"/>
+            </header>
+            <xpath expr="//field[@name='file']" position="before">
+                <field name="contact_id" attrs="{'invisible':['|', ('is_generated','=',False), ('model_name', '!=', 'res.partner')]}"/>
+                <field name="model_name" invisible="1"/>
+                <field name="is_generated" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

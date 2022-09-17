@@ -1,0 +1,23 @@
+<odoo>
+    <record id="kw_dms_template_kw_document_type_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_document_template)</field>
+        <field name="model">kw.document.type</field>
+        <field name="inherit_id"
+               ref="kw_dms.kw_dms_kw_dms_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group" position="inside">
+                <field name="is_generated" invisible="0"/>
+                <field name="template_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//group/group" position="inside">
+                <field name="template_id"
+                       context="{'default_kw_document_is_doc_template': True, 'default_model_id': model_id, }"
+                       attrs="{'invisible': [('is_generated', '=', False)]}"
+                       domain="[('id','in',template_ids)]"/>
+            </xpath>
+            <xpath expr="//field[@name='model_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_generated', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
