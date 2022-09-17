@@ -94,17 +94,17 @@ class KwDirectory(models.Model):
         column1="aid",
         column2="gid",
         string="Groups", )
-    complete_group_ids = fields.Many2many(
-        comodel_name="kw.dms.access.group",
-        relation="dms_directory_complete_groups_rel",
-        column1="aid",
-        column2="gid",
-        string="Complete Groups",
-        compute="_compute_groups",
-        readonly=True,
-        store=True,
-        compute_sudo=True,
-        recursive=True, )
+    # complete_group_ids = fields.Many2many(
+    #     comodel_name="kw.dms.access.group",
+    #     relation="dms_directory_complete_groups_rel",
+    #     column1="aid",
+    #     column2="gid",
+    #     string="Complete Groups",
+    #     compute="_compute_groups",
+    #     readonly=True,
+    #     store=True,
+    #     compute_sudo=True,
+    #     recursive=True, )
     storage_id_inherit_access_from_parent_record = fields.Boolean(
         related="storage_id.inherit_access_from_parent_record",
         related_sudo=True,
@@ -138,13 +138,13 @@ class KwDirectory(models.Model):
         ("name_model_id", "unique (model_id)",
          "A directory with such a model already exists!"), ]
 
-    @api.depends("group_ids", "parent_id", )
-    def _compute_groups(self):
-        for one in self:
-            groups = one.group_ids
-            if one.parent_id:
-                groups |= one.parent_id.complete_group_ids
-            self.complete_group_ids = groups
+    # @api.depends("group_ids", "parent_id", )
+    # def _compute_groups(self):
+    #     for one in self:
+    #         groups = one.group_ids
+    #         if one.parent_id:
+    #             groups |= one.parent_id.complete_group_ids
+    #         self.complete_group_ids = groups
 
     @api.onchange('storage_id', "model_id")
     def _onchange_storage_id(self):
@@ -214,3 +214,18 @@ class KwDirectory(models.Model):
                 record.write({'storage_id': record.parent_id.storage_id})
             else:
                 record.storage_id = record.storage_id
+
+    @api.model
+    def create(self, vals_list):
+        admin = self.env['kw.dms.access.group'].search([
+            ('name', '=', 'Admin'), ('perm_read', '=', True),
+            ('perm_create', '=', True), ('perm_write', '=', True),
+            ('perm_unlink', '=', True)], limit=1)
+        if admin:
+            vals_list['group_ids'] = [(6, 0, [admin.id])]
+        res = super(KwDirectory, self).create(vals_list)
+        if res.group_ids:
+            for obj in res.group_ids:
+                if obj.name == 'Admin':
+                    return res
+        return res

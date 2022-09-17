@@ -1,4 +1,8 @@
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class DmsAccessGroups(models.Model):
@@ -6,8 +10,8 @@ class DmsAccessGroups(models.Model):
     _description = "Record Access Groups"
 
     name = fields.Char(string="Group Name", required=True)
-    hr_department_id = fields.Many2one(
-        comodel_name='hr.department')
+    # hr_department_id = fields.Many2one(
+    #     comodel_name='hr.department')
     perm_create = fields.Boolean(string="Create Access")
     perm_write = fields.Boolean(string="Write Access")
     perm_unlink = fields.Boolean(string="Unlink Access")
@@ -51,11 +55,26 @@ class DmsAccessGroups(models.Model):
             one.update(
                 {"perm_inclusive_%s"
                  % perm: (one["perm_%s" % perm])
-                 for perm in ("create", "unlink", "write", "read", )})
+                 for perm in ("create", "unlink", "write", "read",)})
 
-    @api.onchange("hr_department_id")
-    def _onchange_parent_id(self):
-        if self.hr_department_id:
-            ids = [x.user_id.ids for x in self.hr_department_id.member_ids]
-            self.users += self.env['res.users'].search([
-                ('id', 'in', ids[0]), ])
+    # @api.onchange("hr_department_id")
+    # def _onchange_parent_id(self):
+    #     if self.hr_department_id:
+    #         ids = [x.user_id.ids for x in self.hr_department_id.member_ids]
+    #         self.users += self.env['res.users'].search([
+    #             ('id', 'in', ids[0]), ])
+
+    @api.model
+    def create(self, vals):
+        if vals['name'] == 'Admin':
+            admin_group = self.env.ref(
+                'kw_dms.group_kw_dms_admin')
+            all_users = admin_group.users.mapped('id')
+            vals['users'] = [(6, 0, all_users)]
+        if vals['name'] == 'Manager':
+            manager_group = self.env.ref(
+                'kw_dms.group_kw_dms_manager')
+            all_users = manager_group.users.mapped('id')
+            vals['users'] = [(6, 0, all_users)]
+        res = super(DmsAccessGroups, self).create(vals)
+        return res

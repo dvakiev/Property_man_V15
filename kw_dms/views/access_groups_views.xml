@@ -20,17 +20,17 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <div class="oe_title">
+                    <div class="oe_title" id="name">
                         <label for="name" class="oe_edit_only" />
                         <h1>
                             <field name="name" />
                         </h1>
                     </div>
-                    <group>
-                        <group>
-                            <field name="hr_department_id"/>
-                        </group>
-                    </group>
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="hr_department_id"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
                     <group string="Settings">
                         <field name="perm_create" />
                         <field name="perm_write" />
@@ -68,7 +68,7 @@
     <menuitem
         id="kw_dms_access_groups_menu"
         name="Access Group" sequence="400"
-        groups='kw_document.group_kw_document_admin'
+        groups='group_kw_dms_admin'
         parent="kw_dms_setting_menu"
         action="kw_dms_kw_dms_access_groups_action_window"/>
 </odoo>

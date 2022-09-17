@@ -93,7 +93,7 @@ class DmsSecurityMixin(models.AbstractModel):
             SELECT
                 dir_group_rel.aid
             FROM
-                dms_directory_complete_groups_rel AS dir_group_rel
+                dms_directory_groups_rel AS dir_group_rel
                 INNER JOIN kw_dms_access_group AS dag
                     ON dir_group_rel.gid = dag.id
                 INNER JOIN dms_access_group_users_rel AS users

@@ -86,47 +86,49 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
-                            <div class="oe_kanban_content">
-                                <div class="mk_directory_kanban_actions">
-                                    <div class="mk_directory_kanban_actions_wrapper">
-                                        <a type="action"
-                                           name="%(kw_dms.action_dms_directories_directory)d"
-                                           role="button"
-                                           class="btn btn-sm btn-outline-primary mk_directory_kanban_directories"
-                                           t-att-title="record.count_directories_title.raw_value">
-                                            <i class="fa fa-lg fa-folder"/> </a>
-                                        <a type="object"
+                                <a type="object"
                                            name="directories_file_action"
                                            role="button"
-                                           class="btn btn-sm btn-outline-primary mk_directory_kanban_files"
                                            t-att-title="record.count_files_title.raw_value">
-                                            <i class="fa fa-lg fa-file"/> </a>
-                                    </div>
-                                </div>
-                                <div class="o_kanban_image">
+                                    <div class="o_kanban_image">
                                     <div class="o_kanban_image_wrapper">
                                         <img
                                             t-att-src="record.icon_url.raw_value"
                                             alt="Icon"
                                         />
                                     </div>
-                                </div>
-                                <div class="o_kanban_details">
-                                    <div class="o_kanban_details_wrapper">
-                                        <div class="o_kanban_record_title o_text_overflow">
-                                            <field name="name" />
-                                        </div>
-                                        <div class="o_kanban_record_body">
-                                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                        </div>
-                                        <div class="o_kanban_record_bottom">
-                                            <div class="oe_kanban_bottom_left">
-                                                <field name="write_date" widget="date"/>
+                                    </div>
+                                    <div class="o_kanban_details">
+                                        <div class="o_kanban_details_wrapper">
+                                            <div class="o_kanban_record_title o_text_overflow">
+                                                <field name="name" />
+                                            </div>
+                                            <div class="o_kanban_record_body">
+                                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                            </div>
+                                            <div class="o_kanban_record_bottom">
+                                                <div class="oe_kanban_bottom_left">
+                                                    <field name="write_date" widget="date"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="o_dropdown_kanban dropdown">
+                                        <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                            <span class="fa fa-ellipsis-v"/>
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <t t-if="widget.editable">
+                                                <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                            </t>
+                                            <t t-if="widget.deletable">
+                                                <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                            </t>
+                                            <div role="separator" class="dropdown-divider"/>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </div>
+                                    </div>
+                                </a>
                         </div>
                     </t>
                 </templates>
@@ -144,7 +146,7 @@
                 <field name="count_files" string="Files" />
                 <field name="count_directories" string="Directories" />
                 <field name="complete_name" />
-                <field name="storage_id" groups="dms.group_dms_manager" />
+                <field name="storage_id" />
             </tree>
         </field>
     </record>
@@ -186,10 +188,10 @@
                     <group>
                         <group>
                             <field name="is_root_directory" attrs="{'readonly': [('parent_id', '!=', False)]}"/>
-                            <field name="storage_id" attrs="{'required': [('is_root_directory', '=', True)]}" options="{'no_open': True}"/>
+                            <field name="storage_id" invisible="1" options="{'no_open': True}"/>
                             <field name="parent_id" attrs="{'invisible': [('is_root_directory', '=', True)], 'required': [('is_root_directory', '=', False)]}" options="{'no_quick_create': True}"/>
                             <field name="model_id"  attrs="{'invisible': ['|', ('save_type', '!=', 'attachment'), ('parent_id', '!=', False)], 'required': ['&amp;', ('save_type', '=', 'attachment'), ('parent_id', '=', False)]}"/>
-                            <field name="save_type"/>
+                            <field name="save_type" invisible="1"/>
                         </group>
                         <group>
                             <field name="category_id" options="{'no_open': True, 'no_create': True}"/>
@@ -215,7 +217,7 @@
                                 </tree>
                             </field>
                         </page>
-                        <page name="page_access" string="Access Information">
+                        <page name="page_access" string="Access Information" invisible="1">
                             <group name="permissions">
                                 <group>
                                     <field name="permission_read" readonly="1" />
@@ -238,17 +240,17 @@
                                 </tree>
                             </field>
                         </page>
-                        <page name="access_groups" string="Complete Access Group">
-                            <field name="complete_group_ids">
-                                <tree no_open="True" create="false" delete="false" edit="false">
-                                    <field name="name"/>
-                                    <field name="perm_create"/>
-                                    <field name="perm_write"/>
-                                    <field name="perm_unlink"/>
-                                    <field name="perm_read"/>
-                                </tree>
-                            </field>
-                        </page>
+<!--                        <page name="access_groups" string="Complete Access Group">-->
+<!--                            <field name="complete_group_ids">-->
+<!--                                <tree no_open="True" create="false" delete="false" edit="false">-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="perm_create"/>-->
+<!--                                    <field name="perm_write"/>-->
+<!--                                    <field name="perm_unlink"/>-->
+<!--                                    <field name="perm_read"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
                     </notebook>
                 </sheet>
             </form>
@@ -264,7 +266,7 @@
 
     <menuitem id="kw_dms_kw_dms_directory_menu"
               action="kw_dms.kw_dms_kw_dms_directory_action_window"
-              parent="kw_document.kw_document_main_menu"
+              parent="kw_dms_main_menu"
               name="Directories" sequence="10"/>
 
 </odoo>

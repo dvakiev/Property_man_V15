@@ -1,0 +1,20 @@
+<odoo noupdate="1">
+
+<!--    <record id="kw_document_kw_document_kind_page_document"-->
+<!--            model="kw.document.kind">-->
+<!--        <field name="name">For Document</field>-->
+<!--    </record>-->
+
+    <record id="kw_dms_kw_document_type_attachment" model="kw.document.type">
+        <field name="name">Document</field>
+<!--        <field name="code">999999</field>-->
+        <field name="model_id" ref="model_kw_document"/>
+    </record>
+
+    <record id="kw_dms_kw_document_type_any_file" model="kw.document.type">
+        <field name="name">Any File</field>
+<!--        <field name="code">1234567</field>-->
+        <field name="model_id" ref="model_kw_document"/>
+    </record>
+
+</odoo>

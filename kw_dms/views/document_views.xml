@@ -1,56 +1,27 @@
 <odoo>
-
-    <record id="kw_dms_kw_document_form" model="ir.ui.view">
-        <field name="name">kw.document.form.form (kw_dms)</field>
-        <field name="model">kw.document</field>
-        <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='type_id']" position="after">
-                <field name="directory_id"/>
-                <field name="category_id" attrs="{'invisible': [('category_id', '=', False)]}"/>
-                <field name="storage_id"/>
-            </xpath>
-            <xpath expr="//field[@name='url']" position="before">
-                <field name="attachment_id" attrs="{'invisible': [('attachment_id', '=', False)]}"/>
-                <button name="dms_download_document" type="object"
-                        string="Download Document"
-                        class="btn-primary" attrs="{'invisible': [('attachment_id', '=', False)]}"/>
-            </xpath>
-            <xpath expr="//field[@name='url']" position="attributes">
-                <attribute name="attrs">{'invisible': [('attachment_id', '!=', False)]}</attribute>
-            </xpath>
-            <xpath expr="//field[@name='file']" position="attributes">
-                <attribute name="attrs">{'invisible': [('attachment_id', '!=', False)]}</attribute>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="kw_dms_kw_document_tree" model="ir.ui.view">
+    <record id="kw_dms_kw_dms_tree" model="ir.ui.view">
         <field name="name">kw.document.tree (kw_dms)</field>
         <field name="model">kw.document</field>
-        <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='url']" position="before">
-                <field name="attachment_id" invisible="True"/>
-                <button name="dms_download_document" type="object"
-                        string="Download Document"
-                        class="btn-primary"/>
-            </xpath>
-            <xpath expr="//field[@name='url']" position="attributes">
-                <attribute name="optional">hidden</attribute>
-            </xpath>
+            <tree>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="model" optional="hidden"/>
+                <field name="res_id" optional="hidden"/>
+                <field name="preview" widget="image" options='{"size": [75, 75]}'/>
+                <field name="url" widget="url" text="Download"/>
+            </tree>
         </field>
     </record>
 
-    <record id="kw_dms_kw_document_search" model="ir.ui.view">
+    <record id="kw_dms_kw_dms_search" model="ir.ui.view">
         <field name="name">kw.document.search (kw_dms)</field>
         <field name="model">kw.document</field>
-        <field name="inherit_id"
-               ref="kw_document.kw_document_kw_document_search"/>
+        <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <xpath expr="//search" position="inside">
+            <search>
+                <field name="name"
+                       filter_domain="[('name','ilike',self)]"/>
                 <filter string="All Files" name="all"
                         domain="['|',('active', '=',  False), ('active', '!=',  False)]"/>
                 <filter string="My Files" name="filter_user"
@@ -68,8 +39,152 @@
                     <field name="directory_id" icon="fa-folder"
                            enable_counters="1"/>
                 </searchpanel>
-            </xpath>
+            </search>
         </field>
     </record>
+
+    <record id="kw_dms_kw_dms_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_dms)</field>
+        <field name="model">kw.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="model" invisible="1"/>
+                            <field name="res_id" invisible="1"/>
+<!--                            <field name="reference" widget="reference"-->
+<!--                                   string="Record"/>-->
+                            <field name="name" invisible="1"/>
+                            <field name="type_id" domain="[('id','in',type_ids)]"/>
+                            <field name="directory_id"/>
+                            <field name="category_id" attrs="{'invisible': [('category_id', '=', False)]}"/>
+                            <field name="storage_id" invisible="1"/>
+                            <field name="file" filename="filename" />
+                        </group>
+                        <group>
+                            <field name="preview" widget='image'
+                                   class="oe_avatar"/>
+                            <field name="url" widget="url" text="Download" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="pages" string="Pages" attrs="{'invisible':[('id','=',False)]}">
+                            <field name="page_ids" context="{'default_document_id': id}">
+                                <tree>
+                                    <field name="document_id" invisible="1"/>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="url" widget="url" text="Download"/>
+                                    <field name="image_128" widget="image"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="type_ids" invisible="1"/>
+                    <field name="filename" invisible="1"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Documents</field>
+        <field name="res_model">kw.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_model': 'kw.document'}</field>
+    </record>
+
+    <record id="kw_dms_kw_dms_new_document_action_window"
+            model="ir.actions.act_window">
+        <field name="name">New document</field>
+        <field name="res_model">kw.document</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record>
+
+
+    <menuitem id="kw_dms_kw_dms_menu"
+              action="kw_dms_kw_dms_action_window"
+              parent="kw_dms_main_menu"
+              name="Documents" sequence="100"/>
+
+    <menuitem id="kw_dms_validation_kw_dms_validation_menu"
+          action="kw_dms_kw_dms_action_window"
+          parent="kw_dms_kw_dms_menu"
+          name="Documents" sequence="700"/>
+
+
+
+    <record id="kw_dms_kw_dms_page_tree" model="ir.ui.view">
+        <field name="name">kw.document.page.tree (kw_dms)</field>
+        <field name="model">kw.document.page</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="document_id"/>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="image_128" widget="image"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_page_search" model="ir.ui.view">
+        <field name="name">kw.document.page.search (kw_dms)</field>
+        <field name="model">kw.document.page</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"
+                       filter_domain="[('name','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_page_form" model="ir.ui.view">
+        <field name="name">kw.document.form.form (kw_dms)</field>
+        <field name="model">kw.document.page</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                            <field name="document_id"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="image_128" widget="image" readonly="1"/>
+                            <field name="image_1920"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kw_dms_kw_dms_page_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Document pages</field>
+        <field name="res_model">kw.document.page</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
 
 </odoo>

@@ -8,4 +8,5 @@ from . import (
     category,
     storage,
     document_type,
-    document, )
+    document,
+    res_users, )

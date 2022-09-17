@@ -1,0 +1,15 @@
+<odoo noupdate="1">
+
+<!--    <record id="kw_dms_kw_dms_storage_attachment"-->
+<!--            model="kw.dms.storage">-->
+<!--        <field name="name">Take out from attachments</field>-->
+<!--        <field name="save_type">attachment</field>-->
+<!--    </record>-->
+
+    <record id="kw_dms_kw_dms_storage_filestorage"
+            model="kw.dms.storage">
+        <field name="name">Hide in filestorage</field>
+        <field name="save_type">file</field>
+    </record>
+
+</odoo>

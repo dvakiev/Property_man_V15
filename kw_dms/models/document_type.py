@@ -6,8 +6,20 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentType(models.Model):
-    _inherit = 'kw.document.type'
+    _name = 'kw.document.type'
+    _description = 'Type of document'
 
+    name = fields.Char(
+        required=True, translate=True, )
+    active = fields.Boolean(
+        default=True, )
+    # code = fields.Char(
+    #     required=True, )
+    model_id = fields.Many2one(
+        comodel_name='ir.model', string='Model', required=True, index=True,
+        ondelete='cascade', help='The model this document type belongs to',
+        default=lambda x: x.env['ir.model'].sudo().search(
+            [('model', '=', 'kw.document')]).id)
     is_for_attach_dir = fields.Boolean(
         defaul=False, readonly=True, string='For Attachment Directory')
     is_automatic_sequence = fields.Boolean(

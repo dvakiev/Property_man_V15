@@ -77,11 +77,11 @@
         </field>
     </record>
 
-    <menuitem
-        id="menu_dms_storage"
-        name="Storages"
-        parent="kw_dms_setting_menu"
-        action="kw_dms_kw_dms_storage_action_window"
-        sequence="300"/>
+<!--    <menuitem-->
+<!--        id="menu_dms_storage"-->
+<!--        name="Storages"-->
+<!--        parent="kw_dms_setting_menu"-->
+<!--        action="kw_dms_kw_dms_storage_action_window"-->
+<!--        sequence="300"/>-->
 
 </odoo>

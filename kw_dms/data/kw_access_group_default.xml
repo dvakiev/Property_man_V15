@@ -1,0 +1,23 @@
+<odoo noupdate="1">
+
+    <record id="kw_dms_access_user" model="kw.dms.access.group">
+        <field name="name">User</field>
+        <field name="perm_read">True</field>
+    </record>
+
+    <record id="kw_dms_access_manager" model="kw.dms.access.group">
+        <field name="name">Manager</field>
+        <field name="perm_read">True</field>
+        <field name="perm_create">True</field>
+        <field name="perm_write">True</field>
+    </record>
+
+    <record id="kw_dms_access_admin" model="kw.dms.access.group">
+        <field name="name">Admin</field>
+        <field name="perm_read">True</field>
+        <field name="perm_create">True</field>
+        <field name="perm_write">True</field>
+        <field name="perm_unlink">True</field>
+    </record>
+
+</odoo>

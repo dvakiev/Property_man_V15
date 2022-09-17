@@ -104,4 +104,29 @@
         <field name="domain_force">[('permission_write', '=', user.id)]</field>
     </record>
 
+    <record id="module_category_kw_dms" model="ir.module.category">
+        <field name="name">Document</field>
+        <field name="description">Manage documents</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="group_kw_dms_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="kw_dms.module_category_kw_dms"/>
+    </record>
+
+    <record id="group_kw_dms_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="kw_dms.module_category_kw_dms"/>
+        <field name="implied_ids" eval="[(4, ref('kw_dms.group_kw_dms_user')),]"/>
+    </record>
+
+    <record id="group_kw_dms_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="kw_dms.module_category_kw_dms"/>
+        <field name="implied_ids" eval="[(4, ref('kw_dms.group_kw_dms_manager')),]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+
 </odoo>

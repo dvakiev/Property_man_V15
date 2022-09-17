@@ -1,0 +1,11 @@
+<odoo>
+
+  <record id="kw_dms_kw_dms_root_directory"
+            model="kw.dms.directory">
+        <field name="name">Root directory</field>
+        <field name="is_root_directory" eval="1"/>
+        <field name="group_ids" eval="[(6, 0, [ ref('kw_dms.kw_dms_access_admin'),])]"/>
+        <field name="storage_id" ref="kw_dms_kw_dms_storage_filestorage"/>
+    </record>
+
+</odoo>
