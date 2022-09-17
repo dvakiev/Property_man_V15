@@ -18,7 +18,20 @@
                ref="kw_document.kw_document_kw_document_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group/group" position="inside">
-                <field name="reject_reason_id"/>
+                <field name="reject_reason_id" readonly="1" attrs="{'invisible':[('reject_reason_id','=',False)]}"/>
+                <field name="is_need_reject_reason" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kw_document_reject_reason_kw_document_type_form" model="ir.ui.view">
+        <field name="name">kw.document.type.form (kw_document_reject_reason)</field>
+        <field name="model">kw.document.type</field>
+        <field name="inherit_id"
+               ref="kw_document.kw_document_kw_document_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group" position="inside">
+                <field name="is_need_reject_reason"/>
             </xpath>
         </field>
     </record>
