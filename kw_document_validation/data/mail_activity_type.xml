@@ -4,4 +4,11 @@
         <field name="name">Document validation</field>
         <field name="icon">fa-passport</field>
     </record>
+
+    <record id="kw_dms_kw_document_type_validation" model="kw.document.type">
+        <field name="name">For Validation</field>
+        <field name="code">12345678</field>
+        <field name="model_id" ref="model_kw_document"/>
+        <field name="is_validatable">True</field>
+    </record>
 </odoo>
