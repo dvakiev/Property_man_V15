@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="kw_document_check_fields_kw_document_confirmation_status_tree" model="ir.ui.view">
+        <field name="name">kw.document.confirmation.status.form (kw_document_check_fields)</field>
+        <field name="model">kw.document.confirmation.status</field>
+        <field name="inherit_id"
+               ref="kw_document_confirmation_status.kw_document_confirmation_status_kw_document_confirmation_status_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_id']" position="after">
+                <field name="field_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="kw_document_check_fields_kw_document_confirmation_status_form" model="ir.ui.view">
+        <field name="name">kw.document.confirmation.status.form (kw_document_check_fields)</field>
+        <field name="model">kw.document.confirmation.status</field>
+        <field name="inherit_id"
+               ref="kw_document_confirmation_status.kw_document_confirmation_status_kw_document_confirmation_status_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type_ids']" position="before">
+                <field name="field_ids" widget="many2many_tags"
+                       domain="[('id','in',field_ro_ids)]"/>
+                <field name="field_ro_ids" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
