@@ -1,0 +1,18 @@
+<odoo>
+    <record id="kw_dms_hr_kw_dms_access_groups_form" model="ir.ui.view">
+        <field name="name">kw.dms.access.group.form (kw_dms_hr)</field>
+        <field name="model">kw.dms.access.group</field>
+        <field name="inherit_id"
+               ref="kw_dms.kw_dms_kw_dms_access_groups_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='name']" position="after">
+                <group>
+                    <group>
+                        <field name="hr_department_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
