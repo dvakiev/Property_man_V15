@@ -1,0 +1,8 @@
+<odoo noupdate="1">
+    <record id="menu_pult" model="website.menu">
+        <field name="name">Sequr Pult</field>
+        <field name="url">/details</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">22</field>
+    </record>
+</odoo>

@@ -1,0 +1,88 @@
+<odoo>
+
+    <template id="details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-call="portal.portal_table">
+                        <td class="text-center">
+                            <form action="/details" method="get" class="navbar-search ml-auto pagination form-label">
+                                <t t-call="website.website_search_box">
+                                    <t t-set="search" t-value="search"/>
+                                </t>
+                            </form>
+                        </td>
+                    </t>
+                    <t t-if="partners">
+                        <t t-call="portal.portal_table">
+                            <thead>
+                                <tr>
+                                    <th>Tag name</th>
+                                    <th>Name</th>
+                                    <th>Contract number</th>
+                                    <th>Address</th>
+                                    <th>Phone number</th>
+                                    <th>Type of ordered services</th>
+                                    <th>Submit an invoice</th>
+                                    <th>Departure GBR</th>
+                                    <th>Take Status</th>
+                                    <t t-if="stat">
+                                        <th>Status</th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="partners" t-as="partner">
+                                    <t t-foreach="partner.tenant_details_ids" t-as="detail">
+                                        <tr>
+                                            <td><span t-esc="partner.category_id.name"/></td>
+                                            <td><span t-esc="partner.name"/></td>
+                                            <td><span t-esc="detail.code"/></td>
+                                            <td><span t-esc="detail.property_id.name"/></td>
+                                            <td><span t-esc="partner.phone"/> <span t-esc="partner.mobile"/></td>
+                                            <td><span t-esc="detail.product_id.name"/></td>
+                                            <t t-if="invisible == detail.id">
+                                                <td/>
+                                            </t>
+                                            <t t-else="">
+                                                <td><form t-attf-action="/details/invoice/#{detail.id}" method="post">
+                                                    <button type="submit" class="btn btn-primary">Submit an invoice</button>
+                                                </form></td>
+                                            </t>
+                                            <td>
+                                            <form t-attf-action="/details/departure/#{detail.id}" method="post">
+                                                <button type="submit" class="btn btn-primary">Departure GBR</button>
+                                            </form></td>
+                                            <td><form t-attf-action="/details/status/#{detail.id}" method="post">
+                                                <button type="submit" class="btn btn-primary">Take Status</button>
+                                            </form></td>
+                                            <t t-if="invisible_status == detail.id and stat">
+                                                <td><span t-esc="stat"/></td>
+                                            </t>
+                                            <t t-else="">
+                                                <td/>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="partner.child_ids" t-as="child">
+                                        <tr>
+                                            <td><span t-esc="child.category_id.name"/></td>
+                                            <td><span t-esc="child.name"/></td>
+                                            <td/>
+                                            <td/>
+                                            <td><span t-esc="child.phone"/> <span t-esc="child.mobile"/></td>
+                                            <td/>
+                                            <td/>
+                                            <td/>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
