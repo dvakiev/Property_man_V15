@@ -18,11 +18,6 @@ class DocumentConfirmationStatus(models.Model):
     model_id = fields.Many2one(
         comodel_name='ir.model', string='Model', required=True, index=True,
         ondelete='cascade', help='The model this status type belongs to', )
-    field_ids = fields.Many2many(
-        comodel_name='ir.model.fields', )
-    field_ro_ids = fields.Many2many(
-        comodel_name='ir.model.fields', string='Field ro',
-        compute='_compute_by_model_id', )
     type_ids = fields.Many2many(
         comodel_name='kw.document.type', string='Document type',)
     type_ro_ids = fields.Many2many(
@@ -40,7 +35,6 @@ class DocumentConfirmationStatus(models.Model):
     def _compute_by_model_id(self):
         for obj in self:
             if obj.model_id:
-                obj.field_ro_ids = [(6, 0, obj.model_id.field_id.ids)]
                 obj.type_ro_ids = [
                     (6, 0, self.env['kw.document.type'].search([
                         ('model_id', '=', obj.model_id.id)]).ids)]
@@ -48,7 +42,6 @@ class DocumentConfirmationStatus(models.Model):
                     (6, 0, self.env['kw.document.confirmation.status'].search([
                         ('model_id', '=', obj.model_id.id)]).ids)]
             else:
-                obj.field_ro_ids = False
                 obj.type_ro_ids = False
                 obj.status_ro_ids = False
 
@@ -94,10 +87,6 @@ class ConfirmationStatus(models.Model):
     # pylint: disable=too-many-return-statements
     def compute_state(self):
         self.ensure_one()
-        for f in self.status_id.field_ids:
-            if not getattr(self.env[self.model].sudo().browse(
-                    self.res_id), f.name):
-                return 'draft'
         if self.status_id.type_ids:
             docs = self.env['kw.document'].sudo().search([
                 ('type_id', 'in', self.status_id.type_ids.ids),

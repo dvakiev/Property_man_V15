@@ -7,7 +7,6 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="model_id"/>
-                <field name="field_ids" widget="many2many_tags"/>
                 <field name="type_ids" widget="many2many_tags"/>
                 <field name="status_ids" widget="many2many_tags"/>
             </tree>
@@ -46,10 +45,6 @@
                         <group/>
                     </group>
                     <group>
-                        <field name="field_ids" widget="many2many_tags"
-                               domain="[('id','in',field_ro_ids)]"/>
-                    </group>
-                    <group>
                         <field name="type_ids" widget="many2many_tags"
                                domain="[('id','in',type_ro_ids)]"/>
                     </group>
@@ -59,7 +54,6 @@
                     </group>
                     <notebook/>
                 </sheet>
-                <field name="field_ro_ids" invisible="1"/>
                 <field name="type_ro_ids" invisible="1"/>
                 <field name="status_ro_ids" invisible="1"/>
             </form>
