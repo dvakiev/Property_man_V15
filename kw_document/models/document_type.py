@@ -16,10 +16,12 @@ class DocumentType(models.Model):
     code = fields.Char(
         required=True, )
     kind_id = fields.Many2one(
-        comodel_name='kw.document.kind', required=True, )
+        comodel_name='kw.document.kind')
     model_id = fields.Many2one(
         comodel_name='ir.model', string='Model', required=True, index=True,
-        ondelete='cascade', help='The model this document type belongs to', )
+        ondelete='cascade', help='The model this document type belongs to',
+        default=lambda x: x.env['ir.model'].sudo().search(
+            [('model', '=', 'kw.document')]).id)
     field_ids = fields.One2many(
         comodel_name='kw.document.type.field', inverse_name='type_id', )
     is_uniq = fields.Boolean(

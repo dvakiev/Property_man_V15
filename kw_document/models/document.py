@@ -91,12 +91,13 @@ class Document(models.Model):
 
     def _compute_field_values(self):
         for obj in self:
-            reference = self.env[obj.model].sudo().browse(obj.res_id)
             val = []
-            for f in obj.type_id.field_ids:
-                val.append('{}: {}'.format(
-                    f.field_id.field_description,
-                    getattr(reference, f.field_id.name)))
+            if obj.model:
+                reference = self.env[obj.model].sudo().browse(obj.res_id)
+                for f in obj.type_id.field_ids:
+                    val.append('{}: {}'.format(
+                        f.field_id.field_description,
+                        getattr(reference, f.field_id.name)))
             obj.field_values = '\n'.join(val)
 
     @api.depends('file', 'page_ids')

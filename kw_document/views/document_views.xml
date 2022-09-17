@@ -104,6 +104,12 @@
               parent="kw_document_main_menu"
               name="Documents" sequence="100"/>
 
+    <menuitem id="kw_dms_validation_kw_document_validation_menu"
+          action="kw_document_kw_document_action_window"
+          parent="kw_document_kw_document_menu"
+          name="Documents" sequence="700"/>
+
+
 
     <record id="kw_document_kw_document_page_tree" model="ir.ui.view">
         <field name="name">kw.document.page.tree (kw_document)</field>
