@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="kw_dms_template_sale_order_mail_template_form" model="ir.ui.view">
+        <field name="name">mail.template.form (kw_dms_template_sale_order)</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id"
+               ref="kw_dms_template.kw_dms_template_mail_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_id']" position="attributes">
+                    <attribute name="domain">[('model', 'in', ['res.partner', 'sale.order'])]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
