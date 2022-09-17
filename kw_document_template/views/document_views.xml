@@ -27,6 +27,9 @@
             <form position="inside">
                 <field name="is_generated" invisible="1"/>
             </form>
+            <xpath expr="//field[@name='directory_id']" position="after">
+                <field name="res_id" attrs="{'invisible':[('is_generated','=',False), ]}"/>
+            </xpath>
         </field>
     </record>
 

@@ -34,11 +34,14 @@ class Document(models.Model):
         default=lambda self: self.env.user.company_id.paperformat_id)
     is_generated = fields.Boolean(
         related='type_id.is_generated')
+    model_id = fields.Many2one(
+        comodel_name='ir.model',
+        related='type_id.template_id.model_id')
 
     @api.onchange('type_id')
     def onchange_type_id(self):
         for obj in self:
-            if obj.type_id and obj.type_id.kind_id.is_generated:
+            if obj.type_id and obj.is_generated:
                 obj.body = obj.type_id.template_id.body_html
                 obj.header = obj.type_id.template_id.kw_document_header
                 obj.footer = obj.type_id.template_id.kw_document_footer
@@ -250,7 +253,7 @@ class Document(models.Model):
     def print_pdf(self):
         body = _('<span class="text-danger">Document printed by '
                  '{}</span>').format(self.env.user.name)
-        self.message_post(body=body, message_type='comment',)
+        self.message_post(body=body, message_type='comment', )
         html = '''
 
         <div class="header">
@@ -289,6 +292,23 @@ class Document(models.Model):
     @api.model
     def create(self, vals_list):
         obj = super().create(vals_list)
+        if obj.type_id and obj.is_generated:
+            try:
+                obj.body = obj.render_message(
+                    obj.type_id.template_id.body_html,
+                    obj.type_id.model_id.model, obj.res_id)[obj.res_id]
+                obj.header = obj.render_message(
+                    obj.type_id.template_id.kw_document_header,
+                    obj.type_id.model_id.model, obj.res_id)[obj.res_id]
+                obj.footer = obj.render_message(
+                    obj.type_id.template_id.kw_document_footer,
+                    obj.type_id.model_id.model, obj.res_id)[obj.res_id]
+            except Exception as e:
+                _logger.info(e)
+                obj.body = obj.type_id.template_id.body_html
+                obj.header = obj.type_id.template_id.kw_document_header
+                obj.footer = obj.type_id.template_id.kw_document_footer
+                obj.compile_body()
         if obj.is_generated:
             try:
                 file = obj.print_pdf()
@@ -297,3 +317,9 @@ class Document(models.Model):
             obj.file = base64.b64encode(file)
             obj.filename = '{}.pdf'.format(obj.name)
         return obj
+
+    def render_message(self, body, model, ids):
+        template = self.env['sms.template']._render_template(
+            template_src=body,
+            model=model, res_ids=[ids])
+        return template

@@ -14,8 +14,7 @@ class DocumentType(models.Model):
     template_ids = fields.Many2many(
         comodel_name='mail.template', string='Template ro',
         compute='_compute_template_ids', )
-    is_generated = fields.Boolean(
-        related='kind_id.is_generated')
+    is_generated = fields.Boolean()
 
     @api.depends('model_id')
     def _compute_template_ids(self):

@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="kw_dms_kw_document_template" model="mail.template">
+        <field name="name">Template</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="kw_document_is_doc_template" eval="True"/>
+    </record>
+
+    <record id="kw_dms_kw_document_type_template" model="kw.document.type">
+        <field name="name">For Template Contact</field>
+        <field name="code">123456789</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="template_id" ref="kw_document_template.kw_dms_kw_document_template"/>
+    </record>
+
+    <record id="kw_dms_kw_document_template_2" model="mail.template">
+        <field name="name">Template Sale Order</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="kw_document_is_doc_template" eval="True"/>
+    </record>
+
+    <record id="kw_dms_kw_document_type_template_2" model="kw.document.type">
+        <field name="name">For Template Sale Order</field>
+        <field name="code">123456789</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="template_id" ref="kw_document_template.kw_dms_kw_document_template_2"/>
+    </record>
+</odoo>

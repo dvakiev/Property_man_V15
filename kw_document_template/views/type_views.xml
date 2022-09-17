@@ -5,15 +5,18 @@
         <field name="inherit_id"
                ref="kw_document.kw_document_kw_document_type_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/notebook" position="inside">
-                <field name="is_generated" invisible="1"/>
+            <xpath expr="//group/group" position="inside">
+                <field name="is_generated" invisible="0"/>
                 <field name="template_ids" invisible="1"/>
             </xpath>
             <xpath expr="//group/group" position="inside">
                 <field name="template_id"
                        context="{'default_kw_document_is_doc_template': True, 'default_model_id': model_id, }"
-                       domain="[('id','in',template_ids)]"
-                       attrs="{'invisible':[('is_generated','=',False)]}"/>
+                       attrs="{'invisible': [('is_generated', '=', False)]}"
+                       domain="[('id','in',template_ids)]"/>
+            </xpath>
+            <xpath expr="//field[@name='model_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_generated', '=', False)]}</attribute>
             </xpath>
         </field>
     </record>
