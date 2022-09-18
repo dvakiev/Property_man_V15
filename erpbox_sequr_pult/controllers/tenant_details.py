@@ -7,3 +7,10 @@ class Tenant(models.Model):
     sale_order_id_website = fields.Many2one(
         'sale.order'
     )
+
+
+class Search(models.Model):
+    _name = 'details.partner'
+
+    name = fields.Char()
+    partner = fields.Many2many('res.partner')

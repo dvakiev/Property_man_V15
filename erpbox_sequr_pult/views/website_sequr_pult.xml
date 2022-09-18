@@ -45,15 +45,15 @@
                                                 <td/>
                                             </t>
                                             <t t-else="">
-                                                <td><form t-attf-action="/details/invoice/#{detail.id}" method="post">
+                                                <td><form t-attf-action="/details/invoice/#{detail.id}/#{id_save}" method="post">
                                                     <button type="submit" class="btn btn-primary">Submit an invoice</button>
                                                 </form></td>
                                             </t>
                                             <td>
-                                            <form t-attf-action="/details/departure/#{detail.id}" method="post">
+                                            <form t-attf-action="/details/departure/#{detail.id}/#{id_save}" method="post">
                                                 <button type="submit" class="btn btn-primary">Departure GBR</button>
                                             </form></td>
-                                            <td><form t-attf-action="/details/status/#{detail.id}" method="post">
+                                            <td><form t-attf-action="/details/status/#{detail.id}/#{id_save}" method="post">
                                                 <button type="submit" class="btn btn-primary">Take Status</button>
                                             </form></td>
                                             <t t-if="invisible_status == detail.id and stat">

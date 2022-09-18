@@ -1,4 +1,5 @@
 # pylint: skip-file
+# flake8: noqa
 import logging
 import json
 from odoo import http
@@ -9,79 +10,117 @@ _logger = logging.getLogger(__name__)
 class Details(http.Controller):
 
     @http.route(['''/details''',
-                 '''/details/invoice/<int:ids>''',
-                 '''/details/departure/<int:gbr>''',
-                 '''/details/status/<int:status>''',
+                 '''/details/invoice/<int:ids>/<int:res_v1>''',
+                 '''/details/departure/<int:gbr>/<int:res_v2>''',
+                 '''/details/status/<int:status>/<int:res_v3>''',
                  ], auth='public', type='http', website=True, csrf=False)
-    def details(self, ids=None, gbr=None, search=None, status=None, **post):
+    def details(self, ids=None, gbr=None, search=None, status=None,
+                res_v1=None, res_v2=None, res_v3=None, **post):
         if status:
             stat = self.status(status)
-            detail = http.request.env['tenant.details'].search(
-                [('id', '=', status)], limit=1)
-            return http.request.render(
-                'erpbox_sequr_pult.details',
-                {'partners': detail.partner_id,
-                 'invisible_status': detail.id,
-                 'stat': stat})
+            par_v3 = http.request.env['details.partner'].search(
+                [('id', '=', res_v3)], limit=1)
+            if par_v3:
+                return http.request.render(
+                    'erpbox_sequr_pult.details',
+                    {'partners': par_v3.partner,
+                     'invisible_status': status,
+                     'stat': stat, 'id_save': par_v3.id})
         if gbr:
             self.departure(gbr)
-            detail = http.request.env['tenant.details'].search(
-                [('id', '=', gbr)], limit=1)
-            return http.request.render(
-                'erpbox_sequr_pult.details',
-                {'partners': detail.partner_id,
-                 'invisible_status': detail.id})
+            par_v2 = http.request.env['details.partner'].search(
+                [('id', '=', res_v2)], limit=1)
+            if par_v2:
+                return http.request.render(
+                    'erpbox_sequr_pult.details',
+                    {'partners': par_v2.partner,
+                     'invisible_status': gbr, 'id_save': par_v2.id})
         if ids:
             invoice = self.invoice(ids)
-            detail = http.request.env['tenant.details'].search(
-                [('id', '=', ids)], limit=1)
-            return http.request.render(
-                'erpbox_sequr_pult.details',
-                {'partners': detail.partner_id,
-                 'invisible': invoice, 'invisible_status': invoice})
+            par = http.request.env['details.partner'].search(
+                [('id', '=', res_v1)], limit=1)
+            if par:
+                return http.request.render(
+                    'erpbox_sequr_pult.details',
+                    {'partners': par.partner,
+                     'invisible': invoice,
+                     'invisible_status': invoice,
+                     'id_save': par.id})
         if search:
             detail = []
             try:
                 detail = http.request.env['tenant.details'].search(
-                    [('code', 'ilike', search)], limit=1)
+                    [('code', 'ilike', search)])
             except Exception as e:
                 _logger.info(e)
             if not detail:
                 try:
                     detail = http.request.env['tenant.details'].search(
-                        [('property_id.name', 'ilike', search)], limit=1)
+                        [('property_id.name', 'ilike', search)])
                 except Exception as e:
                     _logger.info(e)
                 if not detail:
                     try:
                         detail = http.request.env['res.partner'].search(
                             ['|', ('phone', 'ilike', search),
-                             ('mobile', 'ilike', search)], limit=1)
+                             ('mobile', 'ilike', search)])
                     except Exception as e:
                         _logger.info(e)
                     if not detail:
                         try:
                             detail = http.request.env['res.partner'].search(
-                                [('name', 'ilike', search)], limit=1)
+                                [('name', 'ilike', search)])
                         except Exception as e:
                             _logger.info(e)
                         if detail:
+                            part = http.request.env['details.partner'].create({
+                                'name': 'partners'
+                            })
+                            part.write({
+                                'partner': [[4, tax.id, 0] for tax in
+                                            detail],
+                            })
                             return http.request.render(
                                 'erpbox_sequr_pult.details',
-                                {'partners': detail, 'search': search})
+                                {'partners': part.partner, 'search': search,
+                                 'id_save': part.id})
                         return http.request.render(
                             'erpbox_sequr_pult.details', {
                                 'search': search})
                     if detail:
+                        part = http.request.env['details.partner'].create({
+                            'name': 'partners'
+                        })
+                        part.write({
+                            'partner': [[4, tax.id, 0] for tax in
+                                        detail],
+                        })
                         return http.request.render(
                             'erpbox_sequr_pult.details',
-                            {'partners': detail, 'search': search})
+                            {'partners': part.partner, 'search': search,
+                             'id_save': part.id})
                 if detail:
+                    part = http.request.env['details.partner'].create({
+                        'name': 'partners'
+                    })
+                    part.write({
+                        'partner': [[4, tax.partner_id.id, 0] for tax in
+                                    detail],
+                    })
                     return http.request.render('erpbox_sequr_pult.details', {
-                        'partners': detail.partner_id, 'search': search})
+                        'partners': part.partner, 'search': search,
+                        'id_save': part.id})
             if detail:
+                part = http.request.env['details.partner'].create({
+                   'name': 'partners'
+                })
+                part.write({
+                    'partner': [[4, tax.partner_id.id, 0] for tax in
+                                detail],
+                })
                 return http.request.render('erpbox_sequr_pult.details', {
-                    'partners': detail.partner_id, 'search': search})
+                    'partners': part.partner, 'search': search,
+                    'id_save': part.id})
         if not search:
             return http.request.render('erpbox_sequr_pult.details', {
                 'partners': [], 'search': search})
