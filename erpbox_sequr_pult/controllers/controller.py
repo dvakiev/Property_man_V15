@@ -17,7 +17,7 @@ class Details(http.Controller):
     def details(self, ids=None, gbr=None, search=None, status=None,
                 res_v1=None, res_v2=None, res_v3=None, **post):
         if status:
-            stat = self.status(status)
+            stat, status_invoice = self.status(status)
             par_v3 = http.request.env['details.partner'].search(
                 [('id', '=', res_v3)], limit=1)
             if par_v3:
@@ -25,6 +25,7 @@ class Details(http.Controller):
                     'erpbox_sequr_pult.details',
                     {'partners': par_v3.partner,
                      'invisible_status': status,
+                     'status_invoice': status_invoice,
                      'stat': stat, 'id_save': par_v3.id})
         if gbr:
             self.departure(gbr)
@@ -36,7 +37,7 @@ class Details(http.Controller):
                     {'partners': par_v2.partner,
                      'invisible_status': gbr, 'id_save': par_v2.id})
         if ids:
-            invoice = self.invoice(ids)
+            invoice, status_invoice = self.invoice(ids)
             par = http.request.env['details.partner'].search(
                 [('id', '=', res_v1)], limit=1)
             if par:
@@ -45,6 +46,7 @@ class Details(http.Controller):
                     {'partners': par.partner,
                      'invisible': invoice,
                      'invisible_status': invoice,
+                     'status_invoice': status_invoice,
                      'id_save': par.id})
         if search:
             detail = []
@@ -129,9 +131,13 @@ class Details(http.Controller):
         detail = http.request.env['tenant.details'].search(
             [('id', '=', ids)], limit=1)
         sale = http.request.env['sale.order'].create(
-            {'tenant_id': detail.id, 'partner_id': detail.partner_id.id,
-             'analytic_contract_id': detail.analytic_account_id.id})
+            {'tenant_id': detail.id,
+             'partner_id': detail.partner_id.id,
+             'analytic_contract_id': detail.analytic_account_id.id,
+             'analytic_account_id': detail.analytic_account_id.id,
+             })
         sale.order_line.create({'product_id': 3302, 'order_id': sale.id})
+        sale.compute_analytic_tags()
         sale.action_confirm()
         detail.sale_order_id_website = sale
         payment = http.request.env['sale.advance.payment.inv'].with_context({
@@ -158,11 +164,8 @@ class Details(http.Controller):
                             'active_model': 'account.move',
                             'active_id': inv.id}).create({})
                     inv.message_post(body=link.link)
-                    # inv.env['account.payment.register'].with_context(
-                    #     active_model='account.move',
-                    #     active_ids=inv.ids).create(
-                    #     {'payment_date': inv.date}).action_create_payments()
-        return detail.id
+                return detail.id, inv.payment_state
+        return detail.id, 'Error invoice'
 
     def departure(self, gbr):
         detail = http.request.env['tenant.details'].search(
@@ -186,6 +189,8 @@ class Details(http.Controller):
                 for inv in s.invoice_ids:
                     if inv.transaction_ids:
                         inv.transaction_ids[-1].check_status_wayforpay()
-                        return inv.transaction_ids[-1].state
+                        return inv.transaction_ids[-1].state, inv.payment_state
                     else:
-                        return 'No Transactions'
+                        return 'No Transactions', inv.payment_state
+        else:
+            return 'No Transactions', 'No Invoice'

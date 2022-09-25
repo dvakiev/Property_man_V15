@@ -23,6 +23,12 @@
                                     <th>Address</th>
                                     <th>Phone number</th>
                                     <th>Type of ordered services</th>
+                                    <t t-if="status_invoice">
+                                        <th>Invoice Status</th>
+                                    </t>
+                                    <t t-else="">
+                                        <th/>
+                                    </t>
                                     <th>Submit an invoice</th>
                                     <th>Departure GBR</th>
                                     <th>Take Status</th>
@@ -41,6 +47,12 @@
                                             <td><span t-esc="detail.property_id.name"/></td>
                                             <td><span t-esc="partner.phone"/> <span t-esc="partner.mobile"/></td>
                                             <td><span t-esc="detail.product_id.name"/></td>
+                                            <t t-if="invisible_status == detail.id and status_invoice">
+                                                <td><span t-esc="status_invoice"/></td>
+                                            </t>
+                                            <t t-else="">
+                                                <td/>
+                                            </t>
                                             <t t-if="invisible == detail.id">
                                                 <td/>
                                             </t>
