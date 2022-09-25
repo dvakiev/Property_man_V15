@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fims_property_details_form_view_inherit_erpbox_property_v2" model="ir.ui.view">
+        <field name="name">property.details.view.form.inherit.erpbox.property</field>
+        <field name="model">property.details</field>
+        <field name="inherit_id" ref="fims_property_management_system.fims_property_details_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                   <field name="security_post_id" domain="[('id', 'in', security_post_ids)]"/>
+                   <field name="security_post_ids" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

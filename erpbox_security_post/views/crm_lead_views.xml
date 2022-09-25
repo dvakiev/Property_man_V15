@@ -7,7 +7,8 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook//group[hasclass('mt48')]" position="inside">
-                <field name="security_post_id" />
+                <field name="security_post_id" domain="[('id', 'in', security_post_ids)]" />
+                <field name="security_post_ids" invisible="1"/>
             </xpath>
         </field>
     </record>

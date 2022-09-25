@@ -4,25 +4,32 @@ from odoo import models, fields, api
 class Partner(models.Model):
     _inherit = "res.partner"
 
+    security_post_ids = fields.Many2many(
+        comodel_name="erpbox.security.post",
+        string="Security Post №",
+        required=False,
+    )
     security_post_id = fields.Many2one(
         comodel_name="erpbox.security.post",
         string="Security Post №",
         required=False,
     )
-    code = fields.Char(
+    contract_ids = fields.Many2many(
         string="Contract №",
-        compute="_compute_code",
-        store=True
+        comodel_name='property.details',
+        compute='_compute_contract',
     )
 
-    def _compute_code(self):
+    def _compute_contract(self):
         for r in self:
-            code = ""
-            if r.id:
-                lead = self.env["crm.lead"].search([
-                    ("partner_id", "=", r.id)],
-                    order="create_date desc",
-                    limit=1)
-                if lead and lead.property_details_id:
-                    code = lead.property_details_id.code
-            r.code = code
+            contract = self.env['property.details'].search(
+                [('partner_id', '=', r.id)])
+            if contract:
+                r.write(
+                    {'contract_ids': [
+                        (6, 0, contract.ids)]}
+                )
+            else:
+                r.write(
+                    {'contract_ids': False}
+                )

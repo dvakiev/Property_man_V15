@@ -7,12 +7,12 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="category_id" position="after">
-                <field name="security_post_id" />
-                <field name="code" />
+                <field name="security_post_ids" widget="many2many_tags"/>
+                <field name="contract_ids" widget="many2many_tags" context="{'code_name':'code'}"/>
             </field>
             <xpath expr="//notebook/page[@name='contact_addresses']//form//field[@name='mobile']" position="after">
-                <field name="security_post_id" />
-                <field name="code" />
+                <field name="security_post_ids" widget="many2many_tags"/>
+                <field name="contract_ids" widget="many2many_tags" context="{'code_name':'code'}"/>
             </xpath>
         </field>
     </record>
@@ -23,20 +23,20 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <field name="function" position="after">
-                <field name="code" />
+                <field name="security_post_id" context="{'code_name':'code'}"/>
             </field>
         </field>
     </record>
 
-    <record id="view_res_partner_filter_inherit_erpbox_security_post" model="ir.ui.view">
-        <field name="name">res.partner.view.search.inherit.erpbox.security.post</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter"/>
-        <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="code" />
-            </field>
-        </field>
-    </record>
+<!--    <record id="view_res_partner_filter_inherit_erpbox_security_post" model="ir.ui.view">-->
+<!--        <field name="name">res.partner.view.search.inherit.erpbox.security.post</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_res_partner_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="name" position="after">-->
+<!--                <field name="code" />-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
 
 </odoo>

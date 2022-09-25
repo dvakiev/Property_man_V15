@@ -1,6 +1,6 @@
 {
     'name': 'ERPBOX - Security Post',
-    'version': '15.0.0.0',
+    'version': '15.0.0.1',
     'depends': [
         'erpbox_property_management',
         'dt_ua_catuttc',
@@ -13,6 +13,8 @@
         'views/res_partner_views.xml',
         'views/crm_lead_views.xml',
         'views/menu.xml',
+        'views/tenant_details_views.xml',
+        'views/property_details_views.xml',
     ],
     'qweb': [
 
