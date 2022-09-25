@@ -73,6 +73,24 @@ class Tenant(models.Model):
         comodel_name="mail.template",
         string="Contract template",
     )
+    child_ids = fields.Many2many('res.partner', compute='_compute_child_ids',
+                                 readonly=1)
+
+    @api.onchange('partner_id')
+    @api.depends('partner_id')
+    def _compute_child_ids(self):
+        for obj in self:
+            if obj.partner_id:
+                obj.write(
+                    {'child_ids': [
+                        (6, 0, obj.partner_id.child_ids.filtered(
+                            lambda r:
+                            r.type in ['contact', 'invoice',
+                                       'delivery']).ids)]})
+            else:
+                obj.write(
+                    {'child_ids': False}
+                )
 
     @api.depends()
     def compute_invoice_counter(self):
@@ -201,6 +219,7 @@ class Tenant(models.Model):
                 "default_tenant_id": self.id,
                 "default_partner_id": self.partner_id.id,
                 "default_analytic_contract_id": self.analytic_account_id.id,
+                "default_analytic_account_id": self.analytic_account_id.id,
             }
         }
 

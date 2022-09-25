@@ -59,6 +59,19 @@
             <field name="is_deposit_returned" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <xpath expr="//notebook" position="inside">
+                <page string="Additional Contact" name="child">
+                    <field name="child_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                            <field name="type"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 

@@ -1,12 +1,12 @@
 {
     'name': 'ERPBOX - Property Management',
-    'version': '15.0.0.0',
+    'version': '15.0.0.4',
     'depends': [
         'crm',
         'fims_property_management_system',
         'erpbox_analytic_contract',
         'account_analytic_parent',
-        'kw_document_template',
+        # 'kw_document_template',
     ],
     'author': 'Dmytro Pavlov <dmitriy.paulov@gmail.com>',
     'data': [
