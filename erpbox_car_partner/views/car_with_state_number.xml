@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="erpbox_car_partner_car_with_state_number_tree" model="ir.ui.view">
+        <field name="name">erpbox.car.partner.car.with.state.number.tree</field>
+        <field name="model">erpbox.car.partner.car.with.state.number</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="state_number_id"/>
+                <field name="state_number_id"/>
+                <field name="brand_id"/>
+                <field name="model_id"/>
+                <field name="vin_id"/>
+                <field name="engine_code_id"/>
+                <field name="color_id"/>
+                <field name="mileage"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="erpbox_car_partner_car_with_state_number_form" model="ir.ui.view">
+        <field name="name">erpbox.car.partner.car.with.state.number.form</field>
+        <field name="model">erpbox.car.partner.car.with.state.number</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="state_number_id"/>
+                            <field name="brand_id"/>
+                            <field name="model_id" domain="[('brand_id', '=', brand_id)]"
+                                   context="{'default_brand_id': brand_id}"/>
+                            <field name="vin_ids" invisible="1"/>
+                            <field name="vin_id" domain="[('id', 'in', vin_ids)]"
+                                   context="{'default_model_id': model_id}"/>
+                            <field name="engine_code_id" domain="[('model_id', '=', model_id)]"
+                                   context="{'default_model_id': model_id}"/>
+                            <field name="color_id"/>
+                            <field name="mileage"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="erpbox_car_partner_car_with_state_number_kanban" model="ir.ui.view">
+        <field name="name">erpbox.car.partner.car.with.state.number.kanban</field>
+        <field name="model">erpbox.car.partner.car.with.state.number</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_details">
+                            <div class="row">
+                                <div class="col-4">Partner:</div>
+                                <div class="col-8 font-weight-bold">
+                                    <field name="partner_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">State number:</div>
+                                <div class="col-8 font-weight-bold">
+                                    <field name="state_number_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Brand:</div>
+                                <div class="col-8 font-weight-bold">
+                                    <field name="brand_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Model:</div>
+                                <div class=" col-8 font-weight-bold">
+                                    <field name="model_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">VIN:</div>
+                                <div class="col-8">
+                                    <field name="vin_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Engine code:</div>
+                                <div class="col-8">
+                                    <field name="engine_code_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Color:</div>
+                                <div class="col-8">
+                                    <field name="color_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Mileage:</div>
+                                <div class="col-8">
+                                    <field name="mileage"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_erpbox_car_partner_car_with_state_number" model="ir.actions.act_window">
+        <field name="name">Car With State Number</field>
+        <field name="res_model">erpbox.car.partner.car.with.state.number</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+</odoo>

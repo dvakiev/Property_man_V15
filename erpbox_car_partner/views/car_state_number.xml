@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="erpbox_car_partner_car_state_number_tree" model="ir.ui.view">
+        <field name="name">erpbox.car.partner.car.state.number.tree</field>
+        <field name="model">erpbox.car.partner.car.state.number</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="erpbox_car_partner_car_state_number_form" model="ir.ui.view">
+        <field name="name">erpbox.car.partner.car.state.number.form</field>
+        <field name="model">erpbox.car.partner.car.state.number</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_erpbox_car_partner_car_state_number" model="ir.actions.act_window">
+        <field name="name">State Number</field>
+        <field name="res_model">erpbox.car.partner.car.state.number</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_car_state_number" parent="catalog_auto.menu_catalog_auto" action="erpbox_car_partner.action_erpbox_car_partner_car_state_number"/>
+</odoo>
