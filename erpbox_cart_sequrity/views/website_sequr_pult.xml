@@ -1,0 +1,67 @@
+<odoo>
+    <template id="erpbox_cart_sequrity_portal_portal_layout" name="Details" customize_show="True" inherit_id="portal.portal_layout" priority="999">
+        <xpath expr="//div[@id='o_my_sidebar']" position="inside">
+            <div class="o_portal_my_details">
+                <h4>Equipment: </h4>
+                <hr class="mt-1 mb-0"/>
+                <t t-call="portal.portal_table">
+                    <t t-foreach="user_id.partner_id.erpbox_car_ids" t-as="car">
+                        <tr style="background-color: Gainsboro;">
+                            <td><span t-field="car.brand_id.name"/></td>
+                            <td><span t-field="car.model_id.name"/></td>
+                        </tr>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_cart" name="Outstanding credit" customize_show="True" inherit_id="portal.portal_my_home" priority="99">
+    <xpath expr="//div[hasclass('o_portal_docs')]" position="after">
+        <t t-call="portal.portal_table">
+                <tr>
+                    <h6/>
+                    <h5>Account balance: &#160;<span class="badge badge-secondary badge-pill" t-att-data-placeholder_count="'outstanding_credit'">
+                        <i class="fa fa-spin fa-circle-o-notch"></i>
+                    </span> </h5>
+                </tr>
+                            <h4>Contract: </h4>
+            <div class="overflow-hidden" >
+                    <t t-foreach="user_id.partner_id.tenant_details_ids" t-as="detail">
+                        <tr style="outline: 1px solid #666;">
+                            <tr style="background-color: Gainsboro;">
+                             <td width="66%"><span  t-field="detail.property_id.street" /> </td>
+                            <td width="34%"><span   t-field="detail.code" /> </td>
+                                </tr>
+                            <tr style="background-color: Gainsboro;">
+                                <td width="66%"><span t-field="detail.product_id.name"/></td>
+                                <td width="34%">
+                                    <t t-foreach="detail.analytic_tag_ids" t-as="tags">
+                                    <span t-field="tags.name"/><br/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </tr>
+                </t>
+            </div>
+        </t>
+    </xpath>
+  </template>
+
+
+      <template id="portal_my_home_purchase" name="Show Requests for Quotation / Purchase Orders" customize_show="True" inherit_id="portal.portal_my_home" priority="99">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="replace">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Sales Orders</t>
+                <t t-set="url" t-value="'/my/orders'"/>
+                <t t-set="placeholder_count" t-value="'order_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Invoices &amp; Bills</t>
+                <t t-set="url" t-value="'/my/invoices'"/>
+                <t t-set="placeholder_count" t-value="'invoice_count'"/>
+            </t>
+        </xpath>
+     </template>
+
+</odoo>
